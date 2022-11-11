@@ -19,9 +19,21 @@ public class Player implements Runnable {
         }
     }
 
-    @Override
-    public void run() {
+    public Deck selectDeck(int deckNumber)
+    {
+     for (Deck deck: CardGame.decks)
+     {
+         if(deck.getNumberofDeck() == deckNumber){
+             return deck;
+         }
 
-
+     }
+     return null;
     }
+
+    @Override
+    public void run() {}
+
+
+
 }

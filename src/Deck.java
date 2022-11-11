@@ -3,10 +3,11 @@ import java.util.ArrayList;
 public class Deck {
 
   ArrayList<Card> deck = new ArrayList<Card>();
-  int numOfCards;
+  int Number;
 
-  public Deck(int numOfCards,ArrayList<Card>deck){
-      this.numOfCards=numOfCards;
+  public Deck(int deckNumber,ArrayList<Card>deck){
+
+      this.Number=deckNumber;
       this.deck = deck;
   }
 
@@ -16,8 +17,8 @@ public class Deck {
       return firstCard;
   }
 
-    public int getNumOfCards() {
-        return numOfCards;
+    public int getNumberofDeck() {
+        return Number;
   }
 
     public ArrayList<Card> getDeck() {
