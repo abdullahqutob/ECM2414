@@ -11,7 +11,7 @@ public class Player implements Runnable {
     public Player(int number){
         this.playerDenomination = number;
         this.drawDeck = number;
-        if(number == CardGame.num) {
+        if(number == 0) {           // 0 will be Number of players in game
             discardedDeck = 1;
         }
         else {
