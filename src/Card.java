@@ -6,7 +6,7 @@ public class Card {
         this.CardNum = CardNum;
     }
 
-    public int getCardNum(){
+    public synchronized int getCardNum(){
         return CardNum;
     }
 }
