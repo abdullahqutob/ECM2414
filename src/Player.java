@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player implements Runnable {
 
@@ -7,6 +8,10 @@ public class Player implements Runnable {
     private int drawDeck;
     private int discardedDeck;
 
+    /**
+     *
+     * @param number
+     */
 
     public Player(int number){
         this.playerDenomination = number;
@@ -19,6 +24,11 @@ public class Player implements Runnable {
         }
     }
 
+    /**
+     *
+     * @param deckNumber
+     * @return
+     */
     public Deck selectDeck(int deckNumber)
     {
      for (Deck deck: CardGame.decks)
@@ -32,9 +42,31 @@ public class Player implements Runnable {
      return null;
     }
 
+    public Card removeCard(Card newCard)
+    {
+        this.hand.add(newCard);
+        boolean preferredCard = true;
+        Card removedCard =  new Card(0);
+        Random randomIndexGenerator = new Random();
+
+        while (preferredCard == true){
+            int randomIndex = (int) Math.floor(randomIndexGenerator.nextInt(5));
+            if (this.hand.get(randomIndex).getCardNum()!=this.playerDenomination){
+                preferredCard = false;
+                removedCard = this.hand.get(randomIndex);
+
+            }
+        }
+
+        return removedCard;
+
+    }
+
+
+
+
     @Override
     public void run() {}
-
 
 
 }
