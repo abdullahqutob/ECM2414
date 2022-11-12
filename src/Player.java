@@ -60,7 +60,7 @@ public class Player implements Runnable {
      * @param newCard
      * @return
      */
-    public Card addRemoveCard(Card newCard)
+    public Card addAndRemoveCard(Card newCard)
     {
         this.hand.add(newCard); //add card to hand
         boolean preferredCard = true; //

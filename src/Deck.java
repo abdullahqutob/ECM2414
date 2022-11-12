@@ -29,6 +29,10 @@ public class Deck {
         this.deck.add(deck.size(), card);
     }
 
+    public void removeCard(Card card){
+        this.deck.remove(card);
+    }
+
     public int getNumberofDeck() {
         return Number;
   }
