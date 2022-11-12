@@ -5,7 +5,7 @@ public class Deck {
   ArrayList<Card> deck = new ArrayList<Card>();
   int Number;
 
-  public Deck(int deckNumber,ArrayList<Card>deck){
+  public Deck(int deckNumber){
 
       this.Number=deckNumber;
       this.deck = deck;
@@ -17,8 +17,9 @@ public class Deck {
      * @return first card from deck
      */
   public synchronized Card drawCard (Card card){
-
+    //TODO: add empty deck thread handling (wait)
       Card firstCard = this.deck.get(0);
+      this.deck.remove(0);
       return firstCard;
   }
 
@@ -32,6 +33,8 @@ public class Deck {
     public int getNumberofDeck() {
         return Number;
   }
+
+
 
 
 
