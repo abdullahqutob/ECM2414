@@ -15,7 +15,7 @@ public class Deck {
      * @return first card from deck
      */
   public synchronized Card drawCard (){
-      //TODO: add empty deck thread handling (wait)
+      //TODO: add thread handling for empty deck (wait)
       this.deck.remove(0);
       return this.deck.get(0);
   }
