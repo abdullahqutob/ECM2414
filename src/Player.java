@@ -42,7 +42,12 @@ public class Player implements Runnable {
      return null;
     }
 
-    public Card removeCard(Card newCard)
+    /**
+     * Mechanism which allows player to add card to hand and remove another.
+     * @param newCard
+     * @return
+     */
+    public Card addRemoveCard(Card newCard)
     {
         this.hand.add(newCard);
         boolean preferredCard = true;
@@ -50,19 +55,28 @@ public class Player implements Runnable {
         Random randomIndexGenerator = new Random();
 
         while (preferredCard == true){
+
             int randomIndex = (int) Math.floor(randomIndexGenerator.nextInt(5));
             if (this.hand.get(randomIndex).getCardNum()!=this.playerDenomination){
                 preferredCard = false;
                 removedCard = this.hand.get(randomIndex);
+                this.hand.remove(randomIndex);
 
             }
         }
-
         return removedCard;
-
     }
 
-
+    /**
+     * Checks if player has won game
+     * @return true or false
+     */
+    boolean hasPlayerWon(){
+        for(int i=0;i<hand.size();i++){
+            if(this.hand.get(i).getCardNum()!=playerDenomination) return false;
+        }
+        return true;
+    }
 
 
     @Override
