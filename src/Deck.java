@@ -13,10 +13,10 @@ public class Deck {
 
     /**
      *
-     * @param card
+     *
      * @return first card from deck
      */
-  public synchronized Card drawCard (Card card){
+  public synchronized Card drawCard (){
     //TODO: add empty deck thread handling (wait)
       Card firstCard = this.deck.get(0);
       this.deck.remove(0);
@@ -28,7 +28,11 @@ public class Deck {
      * @param card
      */
     public void insertCard (Card card){
-        this.deck.add(deck.size()-1, card);
+        this.deck.add(deck.size(), card);
+    }
+
+    public void removeCard(Card removedCard) {
+        this.deck.remove(removedCard);
     }
     public int getNumberofDeck() {
         return Number;
@@ -42,4 +46,6 @@ public class Deck {
     public ArrayList<Card> getDeck() {
         return deck;
     }
+
+
 }

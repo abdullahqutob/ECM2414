@@ -75,6 +75,10 @@ public class Player implements Runnable {
                 removedCard = this.hand.get(randomIndex);
                 this.hand.remove(randomIndex);
 
+                // Remove card drawn from draw deck
+                selectDeck(drawDeck). removeCard(removedCard);
+                // Add discarded card to discard deck
+                selectDeck(discardedDeck).insertCard(removedCard);
             }
         }
         return removedCard;
