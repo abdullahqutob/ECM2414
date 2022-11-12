@@ -8,7 +8,7 @@ public class Card {
         this.CardNum = CardNum;
     }
 
-    public synchronized int getCardNum(){
+    public synchronized int getValue(){
         return CardNum;
     }
 }

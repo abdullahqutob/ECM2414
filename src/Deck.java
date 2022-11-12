@@ -25,11 +25,11 @@ public class Deck {
      * Inserts card into end of deck
      * @param card Card to be inserted
      */
-    public void insertCard (Card card){
+    public synchronized void insertCard (Card card){
         this.deck.add(deck.size(), card);
     }
 
-    public void removeCard(Card card){
+    public synchronized void removeCard(Card card){
         this.deck.remove(card);
     }
 

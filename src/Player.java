@@ -20,11 +20,21 @@ public class Player implements Runnable {
      */
     private int discardedDeck;
 
+    private String getHand() {
+       String output = "";
+       for(int i=0; i<hand.size();i++){
+           output+= hand.get(i).toString() + " ";
+       }
+
+       return output;
+    }
+
     /**
      *  Constructor which creates player object
      *
      * @param number The denomination of the player
      */
+
 
 
     public Player(int number){
@@ -47,7 +57,7 @@ public class Player implements Runnable {
      * @param deckNumber
      * @return
      */
-    public Deck selectDeck(int deckNumber)
+    public synchronized Deck selectDeck(int deckNumber)
     {
      for (Deck deck: CardGame.decks)
      {
@@ -63,9 +73,10 @@ public class Player implements Runnable {
     /**
      *  Player reports moves
      */
-    public void log(Card card){
-        System.out.println("Player "+ getPlayerDenomination() + "draws a "+card.getCardNum() + "from "+ discardedDeck);
-
+    public void log (Card newCard, Card oldCard) {
+        System.out.println("Player "+ getPlayerDenomination() + "draws a "+ newCard.getValue() + "from "+ discardedDeck);
+        System.out.println("Player discards a " + oldCard.getValue());
+        System.out.println("Player "+ getPlayerDenomination() + "current hand is " + getHand());
     }
 
     /**
@@ -83,7 +94,7 @@ public class Player implements Runnable {
         while (preferredCard && !hasPlayerWon()){
 
             int randomIndex = (int) Math.floor(randomIndexGenerator.nextInt(5));
-            if (this.hand.get(randomIndex).getCardNum()!=this.playerDenomination){
+            if (this.hand.get(randomIndex).getValue()!=this.playerDenomination){
                 preferredCard = false;
                 removedCard = this.hand.get(randomIndex);
                 this.hand.remove(randomIndex);
@@ -92,6 +103,9 @@ public class Player implements Runnable {
                 selectDeck(drawDeck). removeCard(removedCard);
                 // Add discarded card to discard deck
                 selectDeck(discardedDeck).insertCard(removedCard);
+
+                log(newCard,removedCard);
+
             }
         }
         return removedCard;
@@ -103,7 +117,7 @@ public class Player implements Runnable {
      */
     boolean hasPlayerWon(){
         for(int i=0;i<hand.size();i++){
-            if(this.hand.get(i).getCardNum()!=playerDenomination) return false;
+            if(this.hand.get(i).getValue()!=playerDenomination) return false;
         }
         return true;
     }

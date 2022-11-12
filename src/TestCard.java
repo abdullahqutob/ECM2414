@@ -9,9 +9,9 @@ public class TestCard {
         Card testCard3 = new Card(2);
 
 
-        int card1Value = testCard1.getCardNum();
-        int card2Value = testCard2.getCardNum();
-        int card3Value = testCard3.getCardNum();
+        int card1Value = testCard1.getValue();
+        int card2Value = testCard2.getValue();
+        int card3Value = testCard3.getValue();
 
         assertEquals(card1Value, card2Value);
         assertNotEquals(card1Value, card3Value);
