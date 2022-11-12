@@ -26,6 +26,7 @@ public class Player implements Runnable {
      * @param number The denomination of the player
      */
 
+
     public Player(int number){
         this.playerDenomination = number;
         this.drawDeck = number;
@@ -35,6 +36,10 @@ public class Player implements Runnable {
         else {
             this.discardedDeck = number + 1;
         }
+    }
+
+    public int getPlayerDenomination() {
+        return playerDenomination;
     }
 
     /**
@@ -53,6 +58,14 @@ public class Player implements Runnable {
      }
 
      return null;
+    }
+
+    /**
+     *  Player reports moves
+     */
+    public void log(Card card){
+        System.out.println("Player "+ getPlayerDenomination() + "draws a "+card.getCardNum() + "from "+ discardedDeck);
+
     }
 
     /**
