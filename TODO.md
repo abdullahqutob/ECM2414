@@ -9,14 +9,14 @@
 
 ## Deck
 
-- [ ] Queue Data Structure
+- [x] Queue Data Structure
   - add to back
   - take from front
 - [ ] Thread safe if deck is empty
 - [ ] Create text file
 - [ ] Write contents of deck to file 
   ### Testing
-    - [ ] Test insertion and removal of card
+    - [x] Test insertion and removal of card
     - [ ] Test creation and writing to text file
     - [ ] test thread safe-ing if deck is empty
 
@@ -52,8 +52,8 @@
 
 ## Card
 
-- [ ] Create Card
-- [ ] Get card value
+- [x] Create Card
+- [x] Get card value
   ### Testing
-    - [ ] Testing creation of card and its value
+    - [x] Testing creation of card and its value
     
