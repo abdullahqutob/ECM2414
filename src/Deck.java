@@ -5,36 +5,36 @@ public class Deck {
   ArrayList<Card> deck = new ArrayList<Card>();
   int Number;
 
-  public Deck(int deckNumber,ArrayList<Card>deck){
+
+  public Deck(int deckNumber){
 
       this.Number=deckNumber;
-      this.deck = deck;
   }
 
     /**
-     *
-     * @param card
      * @return first card from deck
      */
-  public synchronized Card drawCard (Card card){
-
-      Card firstCard = this.deck.get(0);
-      return firstCard;
+  public synchronized Card drawCard (){
+      //TODO: add empty deck thread handling (wait)
+      this.deck.remove(0);
+      return this.deck.get(0);
   }
 
     /**
      * Inserts card into end of deck
-     * @param card
+     * @param card Card to be inserted
      */
     public void insertCard (Card card){
-        this.deck.add(deck.size()-1, card);
+        this.deck.add(deck.size(), card);
     }
+
     public int getNumberofDeck() {
         return Number;
   }
 
-
-
+    public int deckLength(){
+        return this.deck.toArray().length;
+    }
 
     public ArrayList<Card> getDeck() {
         return deck;
