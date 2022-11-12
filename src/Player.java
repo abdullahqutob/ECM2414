@@ -67,7 +67,7 @@ public class Player implements Runnable {
         Card removedCard =  new Card(0);
         Random randomIndexGenerator = new Random();
 
-        while (preferredCard == true){
+        while (preferredCard == true && !hasPlayerWon()){
 
             int randomIndex = (int) Math.floor(randomIndexGenerator.nextInt(5));
             if (this.hand.get(randomIndex).getCardNum()!=this.playerDenomination){
