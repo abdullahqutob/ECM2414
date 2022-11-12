@@ -3,14 +3,27 @@ import java.util.Random;
 
 public class Player implements Runnable {
 
+    /**
+     *  The denomination of player
+     */
     private int playerDenomination;
+    /**
+     *  Hand of player, consisting of cards
+     */
     private ArrayList<Card> hand = new ArrayList<Card>();
+    /**
+     *  Number of deck which player draws from.
+     */
     private int drawDeck;
+    /**
+     *  Number of deck in which player discards cards.
+     */
     private int discardedDeck;
 
     /**
+     *  Constructor which creates player object
      *
-     * @param number
+     * @param number The denomination of the player
      */
 
     public Player(int number){
@@ -43,7 +56,7 @@ public class Player implements Runnable {
     }
 
     /**
-     * Mechanism which allows player to add card to hand and remove another.
+     * Mechanism which allows player to add one card and remove another from hand.
      * @param newCard
      * @return
      */
