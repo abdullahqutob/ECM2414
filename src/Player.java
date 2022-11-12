@@ -38,7 +38,7 @@ public class Player implements Runnable {
     }
 
     /**
-     *
+     * Mechanism to find particular deck number.
      * @param deckNumber
      * @return
      */
@@ -62,12 +62,12 @@ public class Player implements Runnable {
      */
     public Card addRemoveCard(Card newCard)
     {
-        this.hand.add(newCard);
-        boolean preferredCard = true;
+        this.hand.add(newCard); //add card to hand
+        boolean preferredCard = true; //
         Card removedCard =  new Card(0);
         Random randomIndexGenerator = new Random();
 
-        while (preferredCard == true && !hasPlayerWon()){
+        while (preferredCard && !hasPlayerWon()){
 
             int randomIndex = (int) Math.floor(randomIndexGenerator.nextInt(5));
             if (this.hand.get(randomIndex).getCardNum()!=this.playerDenomination){
