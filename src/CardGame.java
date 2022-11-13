@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class CardGame {
 
     static int numOfPlayers;
-
+    static ArrayList<Card> cardsPack = new ArrayList<>();
     static ArrayList<Player> players = new ArrayList<>();
     static ArrayList<Deck> decks = new ArrayList<>();
     static Pack pack = new Pack();
@@ -29,6 +29,22 @@ public class CardGame {
     }
 
 
+    // distribute cards from pack to player hands
+    public void distributeCardsToPlayers() {
+        for (int i = 0; i < cardsPack.size() / 2; i++) {
+            players.get(i % numOfPlayers).addCardToHand(cardsPack.get(i));
+        }
+
+    }
+
+    // distribute cards from pack to deck
+    public void distributeCardsToDecks() {
+        for (int i = cardsPack.size() / 2; i < cardsPack.size(); i++) {
+            decks.get(i % numOfPlayers).insertCard(cardsPack.get(i));
+        }
+    }
+
+
     public static void main(String[] args) {
         LaunchGame();
 
@@ -40,8 +56,8 @@ public class CardGame {
         Pack.requestPackFile();
 
 
-        pack.distributeCardsToPlayers();
-        pack.distributeCardsToDecks();
+        distributeCardsToPlayers();
+        distributeCardsToDecks();
 
 }
 

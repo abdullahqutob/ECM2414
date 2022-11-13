@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Pack {
-    static ArrayList<Card> cardsPack = new ArrayList<>();
     static String packLocation = null;
 
     /**
@@ -27,7 +26,7 @@ public class Pack {
      * Function that checks if a pack is valid.
      * If it is valid, it creates a pack of cards
      * If it is not valid, it requests another input
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException if file location is incorrect or file odes not exist
      */
     public static void validatePack() throws FileNotFoundException {
 
@@ -36,7 +35,7 @@ public class Pack {
         if ((values.size() / CardGame.numOfPlayers) == 8){
             // create pack of cards
             for (Integer value : values) {
-                cardsPack.add(new Card(value));
+                CardGame.cardsPack.add(new Card(value));
             }
         } else if ((values.size() / CardGame.numOfPlayers) > 8){
             System.out.println("Invalid Pack: Pack contains more than 8n cards");
@@ -84,14 +83,6 @@ public class Pack {
 
             return cardValues;
         }
-
-
-
-    public void distributeCardsToPlayers() {
-    }
-
-    public void distributeCardsToDecks() {
-    }
 
 
 }

@@ -129,7 +129,11 @@ public class Player implements Runnable {
 
     }
 
-    public addCard(Card card){
+    /**
+     * Adds card to hand during start of game
+     * @param card
+     */
+    public void addCardToHand(Card card){
         this.hand.add(card);
     }
 

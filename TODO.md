@@ -24,10 +24,10 @@
 ## Player
 
 - [ ] Check if game is won
-- [ ] Grab card
-- [ ] Discard card
-- [ ] create text file
-- [ ] write to text file
+- [x] Grab card
+- [x] Discard card
+- [x] create text file
+- [x] write to text file
     ### Testing
   - [ ] test game winning
   - [ ] test grabbing and discarding card
@@ -36,17 +36,13 @@
 
 ## CardGame
 
-- [ ] check if deck is valid
 - [ ] initialise player threads
 - [ ] Distribute Cards to players in round-robin
 - [ ] Distribute Cards to decks in round-robin
 - [ ] start game
 
   ### Testing
-    - [ ] testing deck validation
-      - invalid and valid decks
-        - deck too small
-        - deck doesnt contain 4n duplicates
+    
     - [ ] testing handing out cards to players and deck\
     - [ ] testing complete game cycle
 
@@ -57,3 +53,14 @@
   ### Testing
     - [x] Testing creation of card and its value
     
+
+## Pack
+- [ ] Read pack file
+- [ ] Validate pack file
+- [ ] add pack file ints to arraylist
+- [ ] check if deck is valid
+  ### Testing
+  - [ ] testing deck validation
+    - deck too small
+    - deck doesnt contain 4n duplicates
+    - deck contains strings
