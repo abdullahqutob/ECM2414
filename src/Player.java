@@ -91,37 +91,46 @@ public class Player implements Runnable {
 
     /**
      * Mechanism which allows player to add one card and remove another from hand; interacts with draw and discard pile.
-     * @param newCard Card drawn by player
+     *
      * @return Card discarded by player
      */
-    public Card addAndRemoveCards(Card newCard) throws IOException {
-        this.hand.add(newCard); //add card to hand
-        boolean preferredCard = true; //
-        Card removedCard =  new Card(0);
-        Random randomIndexGenerator = new Random();
+    public void addAndRemoveCards() throws IOException {
 
-        while (preferredCard){
+        // Take card drawn from draw deck
+       Card drawnCard = selectDeck(drawDeck).drawCard();
+       // As long as draw deck is not empty
+        if (drawnCard != null) {
+            this.hand.add(drawnCard); //add card to hand
+            boolean preferredCard = true;
+            //
+            Card removedCard =  new Card(0);
+            Random randomIndexGenerator = new Random();
 
-            int randomIndex = (int) Math.floor(randomIndexGenerator.nextInt(5));
-            if (this.hand.get(randomIndex).getValue()!=this.playerDenomination){
-                preferredCard = false;
-                removedCard = this.hand.get(randomIndex);
-                this.hand.remove(randomIndex);
+            // Check if card has preferred value or not
+            // If not, keep going through cards in hand until you find one that isn't
+            // Winning conditions are always checked before player takes turn so will not be stuck in infinite loop
+            while (preferredCard){
 
-                // Remove card drawn from draw deck
-                selectDeck(drawDeck). removeCard(removedCard);
-                // Add discarded card to discard deck
-                selectDeck(discardedDeck).insertCard(removedCard);
+                int randomIndex = (int) Math.floor(randomIndexGenerator.nextInt(5));
+                if (this.hand.get(randomIndex).getValue()!=this.playerDenomination){
+                    preferredCard = false;
+                    removedCard = this.hand.get(randomIndex);
+                    this.hand.remove(randomIndex);
 
-                log(newCard,removedCard);
+                    // Add discarded card to discard deck
+                    selectDeck(discardedDeck).insertCard(removedCard);
 
+                    log(drawnCard,removedCard);
+
+                }
             }
+
         }
-        return removedCard;
+
     }
 
     /**
-     * Checks if player has won game
+     * Checks if player has won the game
      * @return true or false
      */
     boolean hasPlayerWon(){
@@ -166,24 +175,23 @@ public class Player implements Runnable {
             playerLogger.write("player " + playerDenomination + " initial hand: " + getHand() + '\n');
             playerLogger.close();
 
-            while (!hasPlayerWon()){
-                //Card Game winner private boolean field is now true
-                // Call Card game winner function which goes through all players and determines which one is winner
 
-
+            while (!CardGame.winner){
+                // Checks if player satisfies winning conditions
+                if(this.hasPlayerWon()){
+                    //Card Game winner private boolean field is now true
+                    CardGame.winner = true;
+                    // Call Card game winner function which goes through all players and determines which one is winner
+                    CardGame.winner(this.playerDenomination);
+                    break;
+                }
+                addAndRemoveCards();
             }
 
-
-
-
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-
-
-
     }
-
-
 }

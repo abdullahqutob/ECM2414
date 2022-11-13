@@ -28,13 +28,6 @@ public class CardGame {
         }
     }
 
-    public void distributeCardsToPlayers() {
-
-    }
-
-    public void distributeCardsToDecks() {
-
-    }
 
     public static void main(String[] args) {
         LaunchGame();
@@ -47,8 +40,19 @@ public class CardGame {
         Pack.requestPackFile();
 
 
-        distributeCardsToPlayers();
-        distributeCardsToDecks();
+        pack.distributeCardsToPlayers();
+        pack.distributeCardsToDecks();
 
+}
+
+    public static void winner(int playerNum) {
+//        for (Player player : players) {
+//            player.interrupt();
+//            player.gameOver(playerNum);
+//        }
+//        for (CardDeck deck : decks) {
+//            deck.logContent();
+//        }
+//        System.out.println("Player " + playerNum + " Won!");
     }
 }
