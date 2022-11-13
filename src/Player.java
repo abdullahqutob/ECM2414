@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -36,7 +38,6 @@ public class Player implements Runnable {
      */
 
 
-
     public Player(int number){
         this.playerDenomination = number;
         this.drawDeck = number;
@@ -71,27 +72,35 @@ public class Player implements Runnable {
     }
 
     /**
-     *  Player reports moves
+     *  Player n reports moves to respective text file in 'playerOutput' file
      */
-    public void log (Card newCard, Card oldCard) {
-        System.out.println("Player "+ getPlayerDenomination() + "draws a "+ newCard.getValue() + "from "+ discardedDeck);
-        System.out.println("Player discards a " + oldCard.getValue());
-        System.out.println("Player "+ getPlayerDenomination() + "current hand is " + getHand());
+    public void log (Card newCard, Card oldCard) throws IOException {
+        try {
+            FileWriter playerLogger = new FileWriter(("playerOutput\\player" + this.playerDenomination + "_output.txt"));
+            playerLogger.write("Player " + getPlayerDenomination() + "draws a " + newCard.getValue() + "from " +
+                    discardedDeck + '\n');
+            playerLogger.write("Player discards a " + oldCard.getValue()+ '\n');
+            playerLogger.write("Player " + getPlayerDenomination() + "current hand is " + getHand()+ '\n');
+            playerLogger.close();
+
+        }
+        catch (IOException exception){
+            System.out.println(exception);
+        }
     }
 
     /**
-     * Mechanism which allows player to add one card and remove another from hand.
-     * @param newCard
-     * @return
+     * Mechanism which allows player to add one card and remove another from hand; interacts with draw and discard pile.
+     * @param newCard Card drawn by player
+     * @return Card discarded by player
      */
-    public Card addAndRemoveCard(Card newCard)
-    {
+    public Card addAndRemoveCards(Card newCard) throws IOException {
         this.hand.add(newCard); //add card to hand
         boolean preferredCard = true; //
         Card removedCard =  new Card(0);
         Random randomIndexGenerator = new Random();
 
-        while (preferredCard && !hasPlayerWon()){
+        while (preferredCard){
 
             int randomIndex = (int) Math.floor(randomIndexGenerator.nextInt(5));
             if (this.hand.get(randomIndex).getValue()!=this.playerDenomination){
@@ -122,9 +131,59 @@ public class Player implements Runnable {
         return true;
     }
 
-
+    /**
+     *
+     * @param winningPlayerNumber Log player's end game state: win or loss
+     * @throws IOException
+     */
+    public void playerWin(int winningPlayerNumber) throws IOException {
+        try {
+            FileWriter playerLogger = new FileWriter(("playerOutput\\player" + this.playerDenomination + "_output.txt"));
+            // If given player object wins
+            if (winningPlayerNumber == playerDenomination) {
+                playerLogger.write("player " + playerDenomination + "wins" + '\n');
+                playerLogger.write("player " + playerDenomination + "exits" + '\n');
+                playerLogger.write("player " + playerDenomination + "hand: " + getHand() + '\n');
+            }
+            // If another player wins
+            else {
+                playerLogger.write("player" + +winningPlayerNumber + "has informed player " + playerDenomination +
+                        "that player" + winningPlayerNumber + "has won" + '\n');
+                playerLogger.write("player " + playerDenomination + "exits" + '\n');
+                playerLogger.write("player " + playerDenomination + "hand: " + getHand() + '\n');
+            }
+            playerLogger.close();
+        }
+        catch (IOException exception){
+            System.out.println(exception);
+        }
+    }
     @Override
-    public void run() {}
+    public void run() {
+
+        try {
+            FileWriter playerLogger = new FileWriter(("playerOutput\\player" + this.playerDenomination + "_output.txt"));
+            playerLogger.write("player " + playerDenomination + " initial hand: " + getHand() + '\n');
+            playerLogger.close();
+
+            while (!hasPlayerWon()){
+                //Card Game winner private boolean field is now true
+                // Call Card game winner function which goes through all players and determines which one is winner
+
+
+            }
+
+
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+
+    }
 
 
 }
