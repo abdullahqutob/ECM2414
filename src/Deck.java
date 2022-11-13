@@ -16,9 +16,14 @@ public class Deck {
      */
   public synchronized Card drawCard (){
       //TODO: add thread handling for empty deck (wait)
-      Card firstCard = this.deck.get(0);
-      this.deck.remove(0);
-      return firstCard;
+      if (this.deck.size() == 0){
+          return null;
+      } else {
+          Card firstCard = this.deck.get(0);
+          this.deck.remove(0);
+          return firstCard;
+      }
+
   }
 
     /**
