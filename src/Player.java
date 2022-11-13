@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Player implements Runnable {
+public class Player extends Thread {
 
     /**
      *  The denomination of player
@@ -123,7 +123,11 @@ public class Player implements Runnable {
                     log(drawnCard,removedCard);
 
                 }
+
+
             }
+
+
 
         }
 
@@ -154,7 +158,7 @@ public class Player implements Runnable {
      * @param winningPlayerNumber Log player's end game state: win or loss
      * @throws IOException
      */
-    public void playerWin(int winningPlayerNumber) throws IOException {
+    public void winDeclaration (int winningPlayerNumber) throws IOException {
         try {
             FileWriter playerLogger = new FileWriter(("playerOutput\\player" + this.playerDenomination + "_output.txt"));
             // If given player object wins
@@ -191,7 +195,7 @@ public class Player implements Runnable {
                     //Card Game winner private boolean field is now true
                     CardGame.winner = true;
                     // Call Card game winner function which goes through all players and determines which one is winner
-                    CardGame.winner(this.playerDenomination);
+                    CardGame.checkForWinner(this.playerDenomination);
                     break;
                 }
                 addAndRemoveCards();

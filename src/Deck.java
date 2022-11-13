@@ -1,7 +1,20 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Deck {
 
+    public int getNumberofDeck() {
+        return Number;
+    }
+
+    public int deckLength(){
+        return this.deck.toArray().length;
+    }
+
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
   ArrayList<Card> deck = new ArrayList<Card>();
   int Number;
 
@@ -15,7 +28,7 @@ public class Deck {
      * @return first card from deck
      */
   public synchronized Card drawCard (){
-      //TODO: add thread handling for empty deck (wait)
+
       if (this.deck.size() == 0){
           return null;
       } else {
@@ -35,16 +48,19 @@ public class Deck {
     }
 
 
+    public void logStatus(){
+        String deckCards = "";
+        for(Card card: deck){
+            deckCards+=" " + card.getValue();
+        }
 
-    public int getNumberofDeck() {
-        return Number;
-  }
-
-    public int deckLength(){
-        return this.deck.toArray().length;
-    }
-
-    public ArrayList<Card> getDeck() {
-        return deck;
+        try {
+            FileWriter deckLogger = new FileWriter("deckOutput\\deck" + Number + "_output.txt");
+            deckLogger.write(deckCards);
+            deckLogger.close();
+        }
+        catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }
