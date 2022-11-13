@@ -129,6 +129,11 @@ public class Player implements Runnable {
 
     }
 
+    public addCard(Card card){
+        this.hand.add(card);
+    }
+
+    
     /**
      * Checks if player has won the game
      * @return true or false
