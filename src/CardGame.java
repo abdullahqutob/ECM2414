@@ -28,6 +28,13 @@ public class CardGame {
         }
     }
 
+    public void distributeCardsToPlayers() {
+
+    }
+
+    public void distributeCardsToDecks() {
+
+    }
 
     public static void main(String[] args) {
         LaunchGame();
@@ -40,8 +47,8 @@ public class CardGame {
         Pack.requestPackFile();
 
 
-        pack.distributeCardsToPlayers();
-        pack.distributeCardsToDecks();
+        distributeCardsToPlayers();
+        distributeCardsToDecks();
 
-}
+    }
 }
