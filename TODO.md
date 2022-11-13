@@ -12,9 +12,9 @@
 - [x] Queue Data Structure
   - add to back
   - take from front
-- [ ] Thread safe if deck is empty
-- [ ] Create text file
-- [ ] Write contents of deck to file 
+- [x] Thread safe if deck is empty
+- [x] Create text file
+- [x] Write contents of deck to file 
   ### Testing
     - [x] Test insertion and removal of card
     - [ ] Test creation and writing to text file
@@ -23,7 +23,7 @@
 
 ## Player
 
-- [ ] Check if game is won
+- [x] Check if game is won
 - [x] Grab card
 - [x] Discard card
 - [x] create text file
@@ -37,13 +37,13 @@
 ## CardGame
 
 - [ ] initialise player threads
-- [ ] Distribute Cards to players in round-robin
-- [ ] Distribute Cards to decks in round-robin
+- [x] Distribute Cards to players in round-robin
+- [x] Distribute Cards to decks in round-robin
 - [ ] start game
 
   ### Testing
     
-    - [ ] testing handing out cards to players and deck\
+    - [ ] testing handing out cards to players and deck
     - [ ] testing complete game cycle
 
 ## Card
@@ -55,10 +55,9 @@
     
 
 ## Pack
-- [ ] Read pack file
+- [x] Read pack file
 - [ ] Validate pack file
-- [ ] add pack file ints to arraylist
-- [ ] check if deck is valid
+- [x] add pack file ints to arraylist
   ### Testing
   - [ ] testing deck validation
     - deck too small
