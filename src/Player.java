@@ -120,6 +120,11 @@ public class Player implements Runnable {
         return removedCard;
     }
 
+    public addCard(Card card){
+        this.hand.add(card);
+    }
+
+    
     /**
      * Checks if player has won game
      * @return true or false
