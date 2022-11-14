@@ -30,64 +30,46 @@ public class Pack {
      * Function that checks if a pack is valid.
      * If it is valid, it creates a pack of cards
      * If it is not valid, it requests another input
-     * @throws FileNotFoundException if file location is incorrect or file odes not exist
+     *
+     * @throws FileNotFoundException if file location is incorrect or file does not exist
      */
+
+    //basically validate array<int> pack then create card pack
     public static void validatePack() throws FileNotFoundException {
 
-        ArrayList<Integer> values = readPack(packLocation);
+        ArrayList<Integer> cardValues = new ArrayList<Integer>();
 
-        if ((values.size() / CardGame.numOfPlayers) == 8){
+        File file = new File(packLocation);
+        Scanner scan = new Scanner(file);
+
+        while (scan.hasNextLine()) {
+            try {
+                int currentValue = Integer.parseInt(scan.nextLine());
+                if (currentValue <= 0) {
+                    System.out.println("Invalid Pack: Values cannot be less than or equal to 0");
+                    requestPackFile();
+                    return;
+                }
+                cardValues.add(currentValue);
+            } catch (NumberFormatException e) { // if line contains non-integers
+                System.out.println("File must only contain Integers");
+                requestPackFile();
+                return;
+            }
+        }
+
+        if ((cardValues.size() / CardGame.numOfPlayers) == 8) {
             // create pack of cards
-            for (Integer value : values) {
+            for (Integer value : cardValues) {
                 CardGame.cardsPack.add(new Card(value));
             }
-        } else if ((values.size() / CardGame.numOfPlayers) > 8){
+        } else if ((cardValues.size() / CardGame.numOfPlayers) > 8) {
             System.out.println("Invalid Pack: Pack contains more than 8n cards");
             requestPackFile();
-        } else if ((values.size() / CardGame.numOfPlayers) < 8) {
+        } else if ((cardValues.size() / CardGame.numOfPlayers) < 8) {
             System.out.println("Invalid Pack: Pack contains less than 8n cards");
             requestPackFile();
         }
     }
 
-
-
-    /**
-     * Function that reads inputted Pack and returns a list of card values
-     * @param fileName Location of pack file
-     * @return cardValues as a list of integers
-     * @throws FileNotFoundException if Pack file could not be opened
-     */
-        public static ArrayList<Integer> readPack(String fileName) throws FileNotFoundException {
-
-            // create array for card values
-            ArrayList<Integer> cardValues = new ArrayList<Integer>();
-
-            // throws exception if no file is inputted
-            if (fileName == null) {
-                throw new FileNotFoundException("File location not entered.");
-            }
-
-            File file = new File(fileName);
-            Scanner scan = new Scanner(file);
-
-
-            while (scan.hasNextLine()) {
-                try {
-                    int currentValue = Integer.parseInt(scan.nextLine());
-                    if (currentValue <= 0) {
-                        System.out.println("Invalid Pack: Values cannot be less than or equal to 0");
-                    }
-                    cardValues.add(currentValue);
-                } catch (NumberFormatException e) { // if line contains non-integers
-                    System.out.println("File must only contain Integers");
-                }
-            }
-
-
-            return cardValues;
-        }
-
-
 }
-
