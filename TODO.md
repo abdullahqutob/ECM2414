@@ -60,6 +60,6 @@
 - [x] add pack file ints to arraylist
   ### Testing
   - [ ] testing deck validation
-    - deck too small
+    - deck too small/big
     - deck doesnt contain 4n duplicates
     - deck contains strings

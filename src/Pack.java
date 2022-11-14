@@ -7,18 +7,22 @@ public class Pack {
     static String packLocation = null;
 
     /**
-     * Function that requests the user to input the location of the pack
-     * then checks if it is valid
-     * @throws FileNotFoundException
+     * Function that requests the user to input the location of
+     * the pack then checks if it is valid,
+     * if the file is not found, request another location input
      */
-    public static void requestPackFile() throws FileNotFoundException {
+    public static void requestPackFile() {
         // Pack location Input
-        System.out.println("Please enter the location of the pack to load: ");
-        Scanner packLocationInput = new Scanner(System.in);
+        try {
+            System.out.println("Please enter the location of the pack to load: ");
+            Scanner packLocationInput = new Scanner(System.in);
+            packLocation = String.valueOf(packLocationInput);
+            validatePack();
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: File not found, please try again");
+            requestPackFile();
+        }
 
-        packLocation = String.valueOf(packLocationInput);
-
-        validatePack();
 
     }
 

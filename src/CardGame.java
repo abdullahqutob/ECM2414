@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CardGame {
@@ -11,23 +12,34 @@ public class CardGame {
     static ArrayList<Player> players = new ArrayList<>();
     static ArrayList<Deck> decks = new ArrayList<>();
     static Pack pack = new Pack();
-
     static boolean winner = false;
+    static int numOfDecks = numOfPlayers;
 
-    static int numOfDecks = 0;
+
+    static boolean validPlayerInput = false;
+    public static void requestUserInput() {
+
+        while (!validPlayerInput) {
+            try {
+                Scanner playersInput = new Scanner(System.in);
+                System.out.println("Please enter the number of players: ");
+                int tempPlayers = playersInput.nextInt();
 
 
-    static boolean playerRequested = false;
-    public static int requestPlayerInput() {
+                if (tempPlayers < 2) {
+                    System.out.println("Input is out of range, Must be greater than 2");
+                } else {
+                    validPlayerInput = true;
+                    numOfPlayers = tempPlayers;
+                }
 
-        if (!playerRequested) {
-            Scanner playersInput = new Scanner(System.in);
-            System.out.println("Please enter the number of players: ");
-            numOfPlayers = playersInput.nextInt();
-            return numOfPlayers;
-        } else {
-            return  numOfPlayers;
+
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input, please try again");
+            }
+
         }
+
     }
 
 
@@ -54,10 +66,10 @@ public class CardGame {
     }
 
     public void LaunchGame() throws FileNotFoundException {
-        requestPlayerInput();
+        requestUserInput();
         Pack.requestPackFile();
-
-
+        // instantiate players
+        // instantiate decks
         distributeCardsToPlayers();
         distributeCardsToDecks();
 
