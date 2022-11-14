@@ -63,3 +63,6 @@
     - deck too small/big
     - deck doesnt contain 4n duplicates
     - deck contains strings
+  - [ ] pack creation
+  - [ ] player creation
+  - [ ] test game functionality 
