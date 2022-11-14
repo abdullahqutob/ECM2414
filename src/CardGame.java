@@ -24,7 +24,7 @@ public class CardGame {
                 Scanner playersInput = new Scanner(System.in);
                 System.out.println("Please enter the number of players: ");
                 int tempPlayers = playersInput.nextInt();
-
+                playersInput.close();
 
                 if (tempPlayers < 2) {
                     System.out.println("Input is out of range, Must be greater than 2");
@@ -44,7 +44,7 @@ public class CardGame {
 
 
     // distribute cards from pack to player hands
-    public void distributeCardsToPlayers() {
+    public static void distributeCardsToPlayers() {
         for (int i = 0; i < cardsPack.size() / 2; i++) {
             players.get(i % numOfPlayers).addCardToHand(cardsPack.get(i));
         }
@@ -52,7 +52,7 @@ public class CardGame {
     }
 
     // distribute cards from pack to deck
-    public void distributeCardsToDecks() {
+    public static void distributeCardsToDecks() {
         for (int i = cardsPack.size() / 2; i < cardsPack.size(); i++) {
             decks.get(i % numOfPlayers).insertCard(cardsPack.get(i));
         }
@@ -139,6 +139,18 @@ public class CardGame {
    }
 
 
+
+    /**
+     *  Starts Player threads
+     */
+    public static void startPlayers()
+    {
+        for(Player player:players){
+            player.start();
+        }
+    }
+
+
     public static void checkForWinner(int playerDenomination) throws IOException {
         for (Player player : players) {
             // Stops all players from continuing
@@ -150,5 +162,41 @@ public class CardGame {
             deck.logStatus();
         }
         System.out.println("Player " + playerDenomination + " Won!");
+    }
+
+    public static void createPlayersAndDecks()
+    {
+        for (int i = 1; i <= numOfPlayers; i++) {
+
+            Player newPlayer = new Player(i);
+            players.add(newPlayer);
+
+            Deck newDeck = new Deck(i);
+            decks.add(newDeck);
+        }
+
+    }
+
+
+    /**
+     * Launches the game
+     * @throws FileNotFoundException In the event that pack file is not found
+     */
+    public static void launchGame() throws FileNotFoundException {
+
+        // Input and File setup
+        requestUserInput();
+//        Pack.requestPackFile();
+//
+//        // Create players
+//        createPlayersAndDecks();
+//
+//        // Distribute cards as per rules
+//        distributeCardsToPlayers();
+//        distributeCardsToDecks();
+//
+//        // Play the game!
+//        startPlayers();
+
     }
 }

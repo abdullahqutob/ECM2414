@@ -13,15 +13,19 @@ public class Pack {
      */
     public static void requestPackFile() {
         // Pack location Input
-        try {
-            System.out.println("Please enter the location of the pack to load: ");
-            Scanner packLocationInput = new Scanner(System.in);
-            packLocation = String.valueOf(packLocationInput);
-            validatePack();
-        } catch (FileNotFoundException e) {
-            System.out.println("Error: File not found, please try again");
-            requestPackFile();
-        }
+
+
+        System.out.println("Please enter the location of the pack to load: ");
+        Scanner packLocationInput = new Scanner(System.in);
+        packLocation = String.valueOf(packLocationInput);
+        packLocationInput.close();
+        System.out.println(packLocation);
+//        try {
+//            validatePack();
+//        } catch (FileNotFoundException e) {
+//            System.out.println("Error: File not found, please try again");
+//            requestPackFile();
+//        }
 
 
     }
