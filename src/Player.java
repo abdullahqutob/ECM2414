@@ -70,14 +70,12 @@ public class Player extends Thread {
 
      return null;
     }
-
     /**
      *  Player n reports moves to respective text file in 'playerOutput' file
      */
     public void log (Card newCard, Card oldCard) throws IOException {
         try {
-            // /Users/samcooklin/Desktop/ECM2414/playerOutput
-            FileWriter playerLogger = new FileWriter(("/Users/samcooklin/Desktop/ECM2414/playerOutput/player" +
+            FileWriter playerLogger = new FileWriter(("playerOutput\\player" +
                     this.playerDenomination + "_output.txt"),true);
             playerLogger.write("Player " + getPlayerDenomination() + " draws a " + newCard.getValue() + " from " +
                     discardedDeck + '\n');
@@ -171,7 +169,8 @@ public class Player extends Thread {
      */
     public void winDeclaration (int winningPlayerNumber) throws IOException {
         try {
-            FileWriter playerLogger = new FileWriter(("/Users/samcooklin/Desktop/ECM2414/playerOutput/player" + this.playerDenomination + "_output.txt"),true);
+            FileWriter playerLogger = new FileWriter(("playerOutput\\player" +
+                    this.playerDenomination + "_output.txt"),true);
             // If given player object wins
             if (winningPlayerNumber == playerDenomination) {
                 playerLogger.write("Player " + playerDenomination + " wins" + '\n');
@@ -181,7 +180,7 @@ public class Player extends Thread {
             // If another player wins
             else {
                 playerLogger.write("Player " + +winningPlayerNumber + " has informed player " + playerDenomination +
-                        " that player" + winningPlayerNumber + " has won" + '\n');
+                        " that player " + winningPlayerNumber + " has won" + '\n');
                 playerLogger.write("Player " + playerDenomination + " exits" + '\n');
                 playerLogger.write("Player " + playerDenomination + " hand: " + getHand() + '\n');
             }
@@ -195,7 +194,8 @@ public class Player extends Thread {
     public void run() {
 
         try {
-            FileWriter playerLogger = new FileWriter(("/Users/samcooklin/Desktop/ECM2414/playerOutput/player" + this.playerDenomination + "_output.txt"),true);
+            FileWriter playerLogger = new FileWriter(("playerOutput\\player" +
+                    this.playerDenomination + "_output.txt"),true);
             playerLogger.write("Player " + playerDenomination + " initial hand: " + getHand() + '\n');
             playerLogger.close();
 

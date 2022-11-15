@@ -66,15 +66,21 @@ public class CardGame {
      * Flush old files for game re-run
      */
    private static void clearFiles() {
+       File dir1 = new File("playerOutput");
+       File dir2 = new File("deckOutput");
 
-       for (File file : new File("playerOutput").listFiles()) {
-           file.delete();
+        //if directory exists -> delete files
+       if (dir1.exists()){
+           for (File file : new File("playerOutput").listFiles()) {
+               file.delete();
+           }
        }
 
+       if (dir2.exists()){
+           for (File file : new File("deckOutput").listFiles()) {
+               file.delete();
 
-       for (File file : new File("deckOutput").listFiles()) {
-           file.delete();
-
+           }
        }
 
    }
@@ -86,8 +92,9 @@ public class CardGame {
 
        for (Player player : players) {
            try {
-               File newFile = new File("/Users/samcooklin/Desktop/ECM2414/playerOutput/player" + player.getPlayerDenomination() +
-                       "_output.txt");
+               File dir1 = new File("playerOutput");
+               dir1.mkdir();
+               File newFile = new File(dir1, "player" + player.getPlayerDenomination() + "_output.txt");
                // Create new empty file for loop
                newFile.createNewFile();
            }
@@ -103,10 +110,11 @@ public class CardGame {
      */
    private static void createDeckFiles() {
        // Create deck files for respective decks
+       File dir2 = new File("deckOutput");
+       dir2.mkdir();
        for (Deck deck : decks) {
            try {
-               File newFile = new File("/Users/samcooklin/Desktop/ECM2414/deckOutput/deck" +
-                       deck.getNumberofDeck() + "_output.txt");
+               File newFile = new File(dir2, "deck" + deck.getNumberofDeck() + "_output.txt");
                newFile.createNewFile();
            } catch (IOException e) {
                System.out.println(e);
@@ -122,8 +130,8 @@ public class CardGame {
     public static void fileCreator()
    {
                 clearFiles();
-               createPlayerFiles();
-               createDeckFiles();
+                createPlayerFiles();
+                createDeckFiles();
    }
 
 

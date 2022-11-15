@@ -56,8 +56,7 @@ public class Deck {
 
 
         try {
-            FileWriter deckLogger = new FileWriter("/Users/samcooklin/Desktop/ECM2414/deckOutput/deck" +
-                    Number + "_output.txt");
+            FileWriter deckLogger = new FileWriter("deckOutput\\deck" + Number + "_output.txt");
             deckLogger.write(deckCards);
             deckLogger.close();
         }

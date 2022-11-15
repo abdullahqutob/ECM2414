@@ -36,7 +36,7 @@
 
 ## CardGame
 
-- [ ] initialise player threads
+- [x] initialise player threads
 - [x] Distribute Cards to players in round-robin
 - [x] Distribute Cards to decks in round-robin
 - [ ] start game
