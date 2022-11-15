@@ -88,7 +88,7 @@ public class CardGame {
 
        for (Player player : players) {
            try {
-               File newFile = new File("playerOutput\\player" + player.getPlayerDenomination() +
+               File newFile = new File("/Users/samcooklin/Desktop/ECM2414/playerOutput/player" + player.getPlayerDenomination() +
                        "_output.txt");
                // Create new empty file for loop
                newFile.createNewFile();
@@ -107,7 +107,8 @@ public class CardGame {
        // Create deck files for respective decks
        for (Deck deck : decks) {
            try {
-               File newFile = new File("deckOutput\\deck" + deck.getNumberofDeck() + "_output.txt");
+               File newFile = new File("/Users/samcooklin/Desktop/ECM2414/deckOutput/deck" +
+                       deck.getNumberofDeck() + "_output.txt");
                newFile.createNewFile();
            } catch (IOException e) {
                System.out.println(e);
