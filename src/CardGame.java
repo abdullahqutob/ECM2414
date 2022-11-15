@@ -67,7 +67,7 @@ public class CardGame {
     /**
      * Flush old files for game re-run
      */
-   private void clearFiles() {
+   private static void clearFiles() {
 
        for (File file : new File("playerOutput").listFiles()) {
            file.delete();
@@ -84,7 +84,7 @@ public class CardGame {
     /**
      *  Create player files
      */
-   private void createPlayerFiles() {
+   private static void createPlayerFiles() {
 
        for (Player player : players) {
            try {
@@ -103,11 +103,11 @@ public class CardGame {
     /**
      *  Create deck files
      */
-   private void createDeckFiles() {
+   private static void createDeckFiles() {
        // Create deck files for respective decks
        for (Deck deck : decks) {
            try {
-               File newFile = new File("deckLogs\\deck" + deck.getNumberofDeck() + "_output.txt");
+               File newFile = new File("deckOutput\\deck" + deck.getNumberofDeck() + "_output.txt");
                newFile.createNewFile();
            } catch (IOException e) {
                System.out.println(e);
@@ -120,7 +120,7 @@ public class CardGame {
     /**
      * Create files for game start-up
      */
-    public void fileCreator()
+    public static void fileCreator()
    {
                 clearFiles();
                createPlayerFiles();
@@ -173,12 +173,17 @@ public class CardGame {
      */
     public static void launchGame() throws FileNotFoundException {
 
+
         // Input and File setup
         requestUserInput();
         Pack.requestPackFile();
 
+
         // Create players
         createPlayersAndDecks();
+
+        // Create files for Player and Deck logs
+        fileCreator();
 
         // Distribute cards as per rules
         distributeCardsToPlayers();
