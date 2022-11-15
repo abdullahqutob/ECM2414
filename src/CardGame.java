@@ -11,10 +11,8 @@ public class CardGame {
     static ArrayList<Card> cardsPack = new ArrayList<>();
     static ArrayList<Player> players = new ArrayList<>();
     static ArrayList<Deck> decks = new ArrayList<>();
-    static Pack pack = new Pack();
-    static boolean winner = false;
-    static int numOfDecks = numOfPlayers;
 
+    static boolean winner = false;
 
     static boolean validPlayerInput = false;
     public static void requestUserInput() {
@@ -59,21 +57,12 @@ public class CardGame {
     }
 
 
-    public static void main(String[] args) {
-       // LaunchGame();
+    public static void main(String[] args) throws FileNotFoundException {
+       launchGame();
 
 
     }
 
-    public void LaunchGame() throws FileNotFoundException {
-        requestUserInput();
-        Pack.requestPackFile();
-        // instantiate players
-        // instantiate decks
-        distributeCardsToPlayers();
-        distributeCardsToDecks();
-
-}
 
     /**
      * Flush old files for game re-run
@@ -99,6 +88,8 @@ public class CardGame {
 
        for (Player player : players) {
            try {
+
+
                File newFile = new File("playerOutput\\player" + player.getPlayerDenomination() +
                        "_output.txt");
                // Create new empty file for loop
@@ -110,23 +101,22 @@ public class CardGame {
        }
 
    }
-
-    /**
+   /**
      *  Create deck files
      */
    private void createDeckFiles() {
        // Create deck files for respective decks
        for (Deck deck : decks) {
            try {
-               File newFile = new File("deckLogs\\deck" + deck.getNumberofDeck() + "_output.txt");
+               // /Users/samcooklin/Desktop/ECM2414/deckOutput
+               File newFile = new File("Users\\samcooklin\\Desktop\\ECM2414\\deckOutput\\deck" + deck.getNumberofDeck() + "_output.txt");
                newFile.createNewFile();
            } catch (IOException e) {
                System.out.println(e);
            }
        }
    }
-
-    // static ?
+   // static ?
 
     /**
      * Create files for game start-up
@@ -184,19 +174,18 @@ public class CardGame {
      */
     public static void launchGame() throws FileNotFoundException {
 
-        // Input and File setup
-        requestUserInput();
-//        Pack.requestPackFile();
-//
-//        // Create players
-//        createPlayersAndDecks();
-//
-//        // Distribute cards as per rules
-//        distributeCardsToPlayers();
-//        distributeCardsToDecks();
-//
-//        // Play the game!
-//        startPlayers();
+//         // Input and File setup
+      requestUserInput();
+      Pack.requestPackFile();
 
+        // Create players
+        createPlayersAndDecks();
+
+        // Distribute cards as per rules
+        distributeCardsToPlayers();
+        distributeCardsToDecks();
+
+        // Play the game!
+        startPlayers();
     }
 }

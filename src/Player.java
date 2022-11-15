@@ -25,7 +25,7 @@ public class Player extends Thread {
     private String getHand() {
        String output = "";
        for(int i=0; i<hand.size();i++){
-           output+= hand.get(i).toString() + " ";
+           output+= hand.get(i).getValue() + " ";
        }
 
        return output;
@@ -41,7 +41,7 @@ public class Player extends Thread {
     public Player(int number){
         this.playerDenomination = number;
         this.drawDeck = number;
-        if(number == 0) {           // 0 will be Number of players in game
+        if(number == CardGame.numOfPlayers) {           // 0 will be Number of players in game
             discardedDeck = 1;
         }
         else {
@@ -76,11 +76,22 @@ public class Player extends Thread {
      */
     public void log (Card newCard, Card oldCard) throws IOException {
         try {
-            FileWriter playerLogger = new FileWriter(("playerOutput\\player" + this.playerDenomination + "_output.txt"));
-            playerLogger.write("Player " + getPlayerDenomination() + "draws a " + newCard.getValue() + "from " +
+            // /Users/samcooklin/Desktop/ECM2414/playerOutput
+            FileWriter playerLogger = new FileWriter(("\\Users\\samcooklin\\Desktop\\ECM2414\\playerOutput\\player" +
+                    this.playerDenomination + "_output.txt"));
+            playerLogger.write("Player " + getPlayerDenomination() + " draws a " + newCard.getValue() + " from " +
                     discardedDeck + '\n');
             playerLogger.write("Player discards a " + oldCard.getValue()+ '\n');
-            playerLogger.write("Player " + getPlayerDenomination() + "current hand is " + getHand()+ '\n');
+            playerLogger.write("Player " + getPlayerDenomination() + " current hand is " + getHand()+ '\n');
+
+            // Test
+            System.out.println("Player " + getPlayerDenomination() + " draws a " + newCard.getValue() + " from " +
+                    discardedDeck + '\n');
+            System.out.println("Player discards a " + oldCard.getValue()+ '\n');
+            System.out.println("Player " + getPlayerDenomination() + " current hand is " + getHand()+ '\n');
+
+
+
             playerLogger.close();
 
         }
@@ -163,16 +174,16 @@ public class Player extends Thread {
             FileWriter playerLogger = new FileWriter(("playerOutput\\player" + this.playerDenomination + "_output.txt"));
             // If given player object wins
             if (winningPlayerNumber == playerDenomination) {
-                playerLogger.write("player " + playerDenomination + "wins" + '\n');
-                playerLogger.write("player " + playerDenomination + "exits" + '\n');
-                playerLogger.write("player " + playerDenomination + "hand: " + getHand() + '\n');
+                playerLogger.write("player " + playerDenomination + " wins" + '\n');
+                playerLogger.write("player " + playerDenomination + " exits" + '\n');
+                playerLogger.write("player " + playerDenomination + " hand: " + getHand() + '\n');
             }
             // If another player wins
             else {
-                playerLogger.write("player" + +winningPlayerNumber + "has informed player " + playerDenomination +
-                        "that player" + winningPlayerNumber + "has won" + '\n');
-                playerLogger.write("player " + playerDenomination + "exits" + '\n');
-                playerLogger.write("player " + playerDenomination + "hand: " + getHand() + '\n');
+                playerLogger.write("player" + +winningPlayerNumber + " has informed player " + playerDenomination +
+                        "that player" + winningPlayerNumber + " has won" + '\n');
+                playerLogger.write("player " + playerDenomination + " exits" + '\n');
+                playerLogger.write("player " + playerDenomination + " hand: " + getHand() + '\n');
             }
             playerLogger.close();
         }
