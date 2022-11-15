@@ -12,13 +12,12 @@ public class Pack {
     public static final String ANSI_GREEN = "\u001B[32m";
 
     /**
-     * Function that requests the user to input the location of
-     * the pack then checks if it is valid,
-     * if the file is not found, request another location input
+     * Function that requests the user to input the location
+     * of the pack then checks if it is valid,
+     * if the file is not found, request another input
      */
     public static void requestPackFile() {
         // Pack location Input
-
         try {
             System.out.println("Please enter the location of the pack to load: ");
             Scanner scanner = new Scanner(System.in);
@@ -30,18 +29,14 @@ public class Pack {
             requestPackFile();
         }
 
-
     }
 
     /**
      * Function that checks if a pack is valid.
-     * If it is valid, it creates a pack of cards
-     * If it is not valid, it requests another input
-     *
+     * If it is valid ->  creates a pack of cards
+     * If it is invalid -> requests another input
      * @throws FileNotFoundException if file location is incorrect or file does not exist
      */
-
-    //basically validate array<int> pack then create card pack
     public static void validatePack() throws FileNotFoundException {
 
         ArrayList<Integer> cardValues = new ArrayList<Integer>();
@@ -49,11 +44,12 @@ public class Pack {
         File file = new File(packLocation);
         Scanner scan = new Scanner(file);
 
+        // scanning the pack line by line
         while (scan.hasNextLine()) {
             try {
                 String scanNextLine = scan.nextLine();
                 int currentValue = Integer.parseInt(scanNextLine);
-                if (currentValue <= 0) { // if pack contains 0 or negative integers
+                if (currentValue <= 0) { // if pack contains a 0 or negative integers
                     System.out.println(ANSI_RED + "Invalid Pack: Values cannot be less than or equal to 0" + ANSI_RESET);
                     requestPackFile();
                     return;

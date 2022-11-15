@@ -16,7 +16,7 @@ public class TestDeck {
         return "testDeckCreation Successful";
     }
 
-    public static String testDeckDrawCard(){
+    public static String testDeckDrawCard() {
         Deck deck1 = new Deck(1);
         Card testCard1 = new Card(1);
         Card testCard2 = new Card(2);

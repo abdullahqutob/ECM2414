@@ -5,48 +5,42 @@ import java.util.Random;
 
 public class Player extends Thread {
 
-    /**
-     *  The denomination of player
-     */
-    private int playerDenomination;
-    /**
-     *  Hand of player, consisting of cards
-     */
-    private ArrayList<Card> hand = new ArrayList<Card>();
-    /**
-     *  Number of deck which player draws from.
-     */
-    private int drawDeck;
-    /**
-     *  Number of deck in which player discards cards.
-     */
-    private int discardedDeck;
+    /** The denomination of player */
+    private final int playerDenomination;
 
-    private String getHand() {
-       String output = "";
-       for(int i=0; i<hand.size();i++){
-           output+= hand.get(i).getValue() + " ";
-       }
+    /** Hand of player, consisting of cards */
+    private final ArrayList<Card> hand = new ArrayList<Card>();
 
-       return output;
-    }
+    /** Number of deck which player draws from. */
+    private final int drawDeck;
+
+    /** Number of deck in which player discards cards. */
+    private final int discardedDeck;
 
     /**
-     *  Constructor which creates player object
-     *
+     * Player constructor
      * @param number The denomination of the player
      */
-
-
-    public Player(int number){
+    public Player(int number) {
         this.playerDenomination = number;
         this.drawDeck = number;
-        if(number == CardGame.numOfPlayers) {           // 0 will be Number of players in game
+        if(number == CardGame.numOfPlayers) {           // Player 0's deck will be numOfPlayers
             discardedDeck = 1;
         }
         else {
             this.discardedDeck = number + 1;
         }
+    }
+
+    /**
+     * @return The cards in the player's hand
+     */
+    private String getHand() {
+        String output = "";
+        for(int i=0; i<hand.size();i++) {
+            output+= hand.get(i).getValue() + " ";
+        }
+        return output;
     }
 
     public int getPlayerDenomination() {
@@ -58,18 +52,23 @@ public class Player extends Thread {
      * @param deckNumber
      * @return
      */
-    public synchronized Deck selectDeck(int deckNumber)
-    {
-     for (Deck deck: CardGame.decks)
-     {
-         if(deck.getNumberofDeck() == deckNumber){
-             return deck;
-         }
-
-     }
-
-     return null;
+    public synchronized Deck selectDeck(int deckNumber) {
+        for (Deck deck: CardGame.decks) {
+            if(deck.getNumberofDeck() == deckNumber) {
+                return deck;
+            }
+        }
+        return null;
     }
+
+    /**
+     * Adds card to hand during start of game
+     * @param card
+     */
+    public void addCardToHand(Card card) {
+        this.hand.add(card);
+    }
+
     /**
      *  Player n reports moves to respective text file in 'playerOutput' file
      */
@@ -77,30 +76,28 @@ public class Player extends Thread {
         try {
             FileWriter playerLogger = new FileWriter(("playerOutput\\player" +
                     this.playerDenomination + "_output.txt"),true);
-            playerLogger.write("Player " + getPlayerDenomination() + " draws a " + newCard.getValue() + " from " +
-                    discardedDeck + '\n');
-            playerLogger.write("Player discards a " + oldCard.getValue()+ '\n');
-            playerLogger.write("Player " + getPlayerDenomination() + " current hand is " + getHand()+ '\n');
+            playerLogger.write("Player " + getPlayerDenomination() + " draws a " + newCard.getValue() + " from deck " +
+                    drawDeck + '\n');
+            playerLogger.write("Player " + getPlayerDenomination() + " discards a " + oldCard.getValue() + " to deck " + discardedDeck + '\n');
+            playerLogger.write("Player " + getPlayerDenomination() + " current hand is " + getHand() + '\n' + '\n');
 
             // Test
-            System.out.println("Player " + getPlayerDenomination() + " draws a " + newCard.getValue() + " from " +
-                    discardedDeck + '\n');
-            System.out.println("Player discards a " + oldCard.getValue()+ '\n');
+            System.out.println("Player " + getPlayerDenomination() + " draws a " + newCard.getValue() + " from deck " +
+                    drawDeck + '\n');
+            System.out.println("Player " + getPlayerDenomination() + " discards a " + oldCard.getValue() + " to deck " + discardedDeck + '\n');
             System.out.println("Player " + getPlayerDenomination() + " current hand is " + getHand()+ '\n');
-
 
 
             playerLogger.close();
 
         }
-        catch (IOException exception){
-            System.out.println(exception);
+        catch (IOException e) {
+            System.out.println(e);
         }
     }
 
     /**
      * Mechanism which allows player to add one card and remove another from hand; interacts with draw and discard pile.
-     *
      * @return Card discarded by player
      */
     public void addAndRemoveCards() throws IOException {
@@ -118,10 +115,10 @@ public class Player extends Thread {
             // Check if card has preferred value or not
             // If not, keep going through cards in hand until you find one that isn't
             // Winning conditions are always checked before player takes turn so will not be stuck in infinite loop
-            while (preferredCard){
+            while (preferredCard) {
 
                 int randomIndex = (int) Math.floor(randomIndexGenerator.nextInt(5));
-                if (this.hand.get(randomIndex).getValue()!=this.playerDenomination){
+                if (this.hand.get(randomIndex).getValue()!=this.playerDenomination) {
                     preferredCard = false;
                     removedCard = this.hand.get(randomIndex);
                     this.hand.remove(randomIndex);
@@ -132,40 +129,28 @@ public class Player extends Thread {
                     log(drawnCard,removedCard);
 
                 }
-
-
             }
 
-
-
         }
-
     }
 
-    /**
-     * Adds card to hand during start of game
-     * @param card
-     */
-    public void addCardToHand(Card card){
-        this.hand.add(card);
-    }
-
-    
     /**
      * Checks if player has won the game
      * @return true or false
      */
-    boolean hasPlayerWon(){
-        for(int i=0;i<hand.size();i++){
+    boolean hasPlayerWon() {
+        for(int i=0;i<hand.size();i++) {
             if(this.hand.get(i).getValue()!=playerDenomination) return false;
         }
         return true;
     }
 
     /**
-     *
+     * The winning player declares to all players that it has won,
+     * writes to its file that it has won,
+     * Losing players log to their files the player that won
      * @param winningPlayerNumber Log player's end game state: win or loss
-     * @throws IOException
+     * @throws IOException Error writing to text file
      */
     public void winDeclaration (int winningPlayerNumber) throws IOException {
         try {
@@ -186,8 +171,8 @@ public class Player extends Thread {
             }
             playerLogger.close();
         }
-        catch (IOException exception){
-            System.out.println(exception);
+        catch (IOException e) {
+            System.out.println(e);
         }
     }
     @Override
@@ -200,9 +185,9 @@ public class Player extends Thread {
             playerLogger.close();
 
 
-            while (!CardGame.winner){
+            while (!CardGame.winner) {
                 // Checks if player satisfies winning conditions
-                if(this.hasPlayerWon()){
+                if(this.hasPlayerWon()) {
                     //Card Game winner private boolean field is now true
                     CardGame.winner = true;
                     // Call Card game winner function which goes through all players and determines which one is winner

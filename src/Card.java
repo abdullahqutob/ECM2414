@@ -1,14 +1,20 @@
 public class Card {
 
-    // exception for wrong input type (string)
-
     private final int CardNum;
 
-    public Card(int CardNum){
+    /**
+     * Card constructor
+     * @param CardNum Value of the card
+     */
+    public Card(int CardNum) {
         this.CardNum = CardNum;
     }
 
-    public synchronized int getValue(){
+    /**
+     * @return Value of the card
+     */
+    public synchronized int getValue() {
         return CardNum;
     }
+
 }

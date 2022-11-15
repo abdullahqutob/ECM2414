@@ -4,56 +4,59 @@ import java.util.ArrayList;
 
 public class Deck {
 
+    ArrayList<Card> deck = new ArrayList<Card>();
+    int Number;
+
+    /**
+     * Create the deck
+     * @param deckNumber
+     */
+    public Deck(int deckNumber) {
+        this.Number=deckNumber;
+    }
+
     public int getNumberofDeck() {
         return Number;
     }
 
-    public int deckLength(){
+    public int deckLength() {
         return this.deck.toArray().length;
     }
 
     public ArrayList<Card> getDeck() {
         return deck;
     }
-  ArrayList<Card> deck = new ArrayList<Card>();
-  int Number;
-
-
-  public Deck(int deckNumber){
-
-      this.Number=deckNumber;
-  }
 
     /**
-     * @return first card from deck
+     * @return First card from deck
      */
-  public synchronized Card drawCard (){
-
-      if (this.deck.size() == 0){
-          return null;
-      } else {
-          Card firstCard = this.deck.get(0);
-          this.deck.remove(0);
-          return firstCard;
-      }
-
-  }
+    public synchronized Card drawCard () {
+        if (this.deck.size() == 0) {
+            return null;
+        } else {
+            Card firstCard = this.deck.get(0);
+            this.deck.remove(0);
+            return firstCard;
+        }
+    }
 
     /**
      * Inserts card into end of deck
      * @param card Card to be inserted
      */
-    public synchronized void insertCard (Card card){
+    public synchronized void insertCard (Card card) {
         this.deck.add(deck.size(), card);
     }
 
+    /**
+     * Writes deck's current cards to output text file
+     */
+    public void logStatus() {
 
-    public void logStatus(){
         String deckCards = "";
-        for(Card card: deck){
-            deckCards+=" " + card.getValue();
+        for(Card card: deck) {
+            deckCards += " " + card.getValue();
         }
-
 
         try {
             FileWriter deckLogger = new FileWriter("deckOutput\\deck" + Number + "_output.txt");
@@ -64,4 +67,5 @@ public class Deck {
             System.out.println(e);
         }
     }
+
 }

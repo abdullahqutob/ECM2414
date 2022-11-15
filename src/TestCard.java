@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 public class TestCard {
 
 
-    public static String testCreateCard(){
+    public static String testCreateCard() {
         Card testCard1 = new Card(1);
         Card testCard2 = new Card(1);
         Card testCard3 = new Card(2);
