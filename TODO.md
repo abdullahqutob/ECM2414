@@ -56,10 +56,10 @@
 
 ## Pack
 - [x] Read pack file
-- [ ] Validate pack file
+- [x] Validate pack file
 - [x] add pack file ints to arraylist
   ### Testing
-  - [ ] testing deck validation
+  - [x] testing deck validation
     - deck too small/big
     - deck doesnt contain 4n duplicates
     - deck contains strings

@@ -11,9 +11,7 @@ public class CardGame {
     static ArrayList<Card> cardsPack = new ArrayList<>();
     static ArrayList<Player> players = new ArrayList<>();
     static ArrayList<Deck> decks = new ArrayList<>();
-    static Pack pack = new Pack();
     static boolean winner = false;
-    static int numOfDecks = numOfPlayers;
 
 
     static boolean validPlayerInput = false;
@@ -170,9 +168,8 @@ public class CardGame {
 
     /**
      * Launches the game
-     * @throws FileNotFoundException In the event that pack file is not found
      */
-    public static void launchGame() throws FileNotFoundException {
+    public static void launchGame() {
 
 
         // Input and File setup
@@ -182,6 +179,7 @@ public class CardGame {
 
         // Create players
         createPlayersAndDecks();
+//        fileCreator();
 
         // Create files for Player and Deck logs
         fileCreator();
