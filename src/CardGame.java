@@ -48,6 +48,20 @@ public class CardGame {
     }
 
     /**
+     * Instantiates player and deck objects
+     */
+    public static void createPlayersAndDecks() {
+        for (int i = 1; i <= numOfPlayers; i++) {
+
+            Player newPlayer = new Player(i);
+            players.add(newPlayer);
+
+            Deck newDeck = new Deck(i);
+            decks.add(newDeck);
+        }
+    }
+
+    /**
      * Distribute cards from pack to player hands
      */
     public static void distributeCardsToPlayers() {
@@ -154,7 +168,7 @@ public class CardGame {
      * @param playerDenomination Player that has won
      * @throws IOException
      */
-    public static void checkForWinner(int playerDenomination) throws IOException {
+    public static void declareWinner(int playerDenomination) throws IOException {
 
         for (Player player : players) {
             // Stops all players threads from continuing
@@ -171,19 +185,6 @@ public class CardGame {
 
     }
 
-    /**
-     * Instantiates player and deck objects
-     */
-    public static void createPlayersAndDecks() {
-        for (int i = 1; i <= numOfPlayers; i++) {
-
-            Player newPlayer = new Player(i);
-            players.add(newPlayer);
-
-            Deck newDeck = new Deck(i);
-            decks.add(newDeck);
-        }
-    }
 
     /**
      * Launches the game

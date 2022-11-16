@@ -66,14 +66,18 @@ public class Pack {
             }
         }
 
-        int cardModPlayer = cardValues.size() % CardGame.numOfPlayers;
-        if (cardModPlayer == 0) {
+        int eightNumOfPlayers= CardGame.numOfPlayers * 8;
+
+        if (cardValues.size() == eightNumOfPlayers){
             // create pack of cards
             for (Integer value : cardValues) {
                 CardGame.cardsPack.add(new Card(value));
             }
-        } else {
-            System.out.println(ANSI_RED + "Invalid Pack: Pack does not contain 8n cards" + ANSI_RESET);
+        } else if (cardValues.size() > eightNumOfPlayers){
+            System.out.println(ANSI_RED + "Invalid Pack: Pack contains more than 8n cards" + ANSI_RESET);
+            requestPackFile();
+        } else if (cardValues.size() < eightNumOfPlayers) {
+            System.out.println(ANSI_RED + "Invalid Pack: Pack contains less than 8n cards" + ANSI_RESET);
             requestPackFile();
         }
 

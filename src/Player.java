@@ -67,10 +67,18 @@ public class Player extends Thread {
 
     /**
      * Adds card to hand during start of game
-     * @param card
+     * @param card To be added to hand
      */
     public void addCardToHand(Card card) {
         this.hand.add(card);
+    }
+
+    /**
+     * Adds card to hand during start of game
+     * @param card To be removed from hand
+     */
+    public void removeCardFromHand(int card) {
+        this.hand.remove(card);
     }
 
     /**
@@ -101,7 +109,8 @@ public class Player extends Thread {
     }
 
     /**
-     * Mechanism which allows player to add one card and remove another from hand; interacts with draw and discard pile.
+     * Mechanism which allows player to add one card and remove another from hand;
+     * interacts with draw and discard pile.
      * @return Card discarded by player
      */
     public void addAndRemoveCards() throws IOException {
@@ -110,10 +119,10 @@ public class Player extends Thread {
        Card drawnCard = selectDeck(drawDeck).drawCard();
        // As long as draw deck is not empty
         if (drawnCard != null) {
-            this.hand.add(drawnCard); //add card to hand
+            addCardToHand(drawnCard);
+
             boolean preferredCard = true;
-            //
-            Card removedCard =  new Card(0);
+            Card removedCard;
             Random randomIndexGenerator = new Random();
 
             // Check if card has preferred value or not
@@ -122,10 +131,11 @@ public class Player extends Thread {
             while (preferredCard) {
 
                 int randomIndex = (int) Math.floor(randomIndexGenerator.nextInt(5));
+                // if the random card is not a players preferred card -> remove card
                 if (this.hand.get(randomIndex).getValue()!=this.playerDenomination) {
                     preferredCard = false;
                     removedCard = this.hand.get(randomIndex);
-                    this.hand.remove(randomIndex);
+                    removeCardFromHand(randomIndex);
 
                     // Add discarded card to discard deck
                     selectDeck(discardedDeck).insertCard(removedCard);
@@ -199,7 +209,7 @@ public class Player extends Thread {
                     //Card Game winner private boolean field is now true
                     CardGame.winner = true;
                     // Call Card game winner function which goes through all players and determines which one is winner
-                    CardGame.checkForWinner(this.playerDenomination);
+                    CardGame.declareWinner(this.playerDenomination);
                     break;
                 }
                 addAndRemoveCards();
