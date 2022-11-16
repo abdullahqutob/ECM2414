@@ -9,30 +9,19 @@ import java.util.Scanner;
  */
 public class CardGame {
 
-    /**
-     *  Number of players participating in game
-     */
+    /** Number of players participating in game */
     static int numOfPlayers;
-    /**
-     *  The pack of cards used in game
-     */
+    /** The pack of cards used in game */
     static ArrayList<Card> cardsPack = new ArrayList<>();
-    /**
-     *  Stores the players of the game
-     */
+    /** Stores the players of the game */
     static ArrayList<Player> players = new ArrayList<>();
-    /**
-     * Stores decks of respective players
-     */
+    /** Stores decks of respective players */
     static ArrayList<Deck> decks = new ArrayList<>();
-    /**
-     *  Status of game, win or loss
-     */
+    /** Status of game, win or loss */
     static boolean winner = false;
-    /**
-     *  Used to ensure valid player input
-     */
 
+
+    /** Used to ensure valid player input */
     static boolean validPlayerInput = false;
 
     /**
@@ -80,18 +69,18 @@ public class CardGame {
      * Flush old files for game re-run
      */
     private static void clearFiles() {
-        File dir1 = new File("playerOutput");
-        File dir2 = new File("deckOutput");
+        File playerOutputDirectory = new File("playerOutput");
+        File deckOutputDirectory = new File("deckOutput");
 
         //if playerOutput directory exists -> delete files
-        if (dir1.exists()) {
+        if (playerOutputDirectory.exists()) {
             for (File file : new File("playerOutput").listFiles()) {
                 file.delete();
             }
         }
 
         //if deckOutput directory exists -> delete files
-        if (dir2.exists()) {
+        if (deckOutputDirectory.exists()) {
             for (File file : new File("deckOutput").listFiles()) {
                 file.delete();
                }
