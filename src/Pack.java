@@ -3,7 +3,11 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Pack of game; used to distribute cards to players and their respective decks
+ */
 public class Pack {
+
     static String packLocation = null;
 
     // colorful error or success messages

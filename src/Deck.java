@@ -2,32 +2,46 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Deck of cards to be used by two players, one as a draw pile and one as a discard pile.
+ */
 public class Deck {
-
+    /**
+     *  Stores cards of deck
+     */
     ArrayList<Card> deck = new ArrayList<Card>();
+    /**
+     *  Number of deck
+     */
     int Number;
 
     /**
-     * Create the deck
+     * Create the deck based on specified its number
      * @param deckNumber
      */
     public Deck(int deckNumber) {
         this.Number=deckNumber;
     }
 
+    /**
+     *  Provides number of deck
+     * @return number of deck
+     */
     public int getNumberofDeck() {
         return Number;
     }
 
+    /**
+     * Provides number cards in deck
+     * @return Number of cards in deck
+     */
     public int deckLength() {
         return this.deck.toArray().length;
     }
 
-    public ArrayList<Card> getDeck() {
-        return deck;
-    }
 
     /**
+     *  Provides card "on top" of pile
      * @return First card from deck
      */
     public synchronized Card drawCard () {

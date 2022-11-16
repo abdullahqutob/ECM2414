@@ -4,14 +4,34 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ *  Implementation of the actual card game
+ */
 public class CardGame {
 
+    /**
+     *  Number of players participating in game
+     */
     static int numOfPlayers;
+    /**
+     *  The pack of cards used in game
+     */
     static ArrayList<Card> cardsPack = new ArrayList<>();
+    /**
+     *  Stores the players of the game
+     */
     static ArrayList<Player> players = new ArrayList<>();
+    /**
+     * Stores decks of respective players
+     */
     static ArrayList<Deck> decks = new ArrayList<>();
+    /**
+     *  Status of game, win or loss
+     */
     static boolean winner = false;
-
+    /**
+     *  Used to ensure valid player input
+     */
 
     static boolean validPlayerInput = false;
 
@@ -90,7 +110,8 @@ public class CardGame {
 
         for (Player player : players) {
             try {
-                File newFile = new File(playerOutputDirectory, "player" + player.getPlayerDenomination() + "_output.txt");
+                File newFile = new File(playerOutputDirectory, "player" +
+                        player.getPlayerDenomination() + "_output.txt");
                 // Create new empty file for loop
                 newFile.createNewFile();
             } catch (IOException e) {
@@ -201,8 +222,6 @@ public class CardGame {
 
     public static void main(String[] args) {
         launchGame();
-
-
     }
 
 }

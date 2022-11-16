@@ -18,7 +18,7 @@ public class Player extends Thread {
     private final int discardedDeck;
 
     /**
-     * Player constructor
+     * Creates player object based on its denomination
      * @param number The denomination of the player
      */
     public Player(int number) {
@@ -43,14 +43,18 @@ public class Player extends Thread {
         return output;
     }
 
+    /**
+     * Provides player's denomination
+     * @return player denomination
+     */
     public int getPlayerDenomination() {
         return playerDenomination;
     }
 
     /**
-     * Mechanism to find particular deck number.
+     * Mechanism to find specified deck based on its number.
      * @param deckNumber
-     * @return
+     * @return Specified deck
      */
     public synchronized Deck selectDeck(int deckNumber) {
         for (Deck deck: CardGame.decks) {
@@ -175,6 +179,10 @@ public class Player extends Thread {
             System.out.println(e);
         }
     }
+
+    /**
+     *  Implements players' behaviour in game
+     */
     @Override
     public void run() {
 
