@@ -161,7 +161,7 @@ public class Player extends Thread {
 
     /**
      * The winning player declares to all players that it has won,
-     * writes to its file that it has won,
+     * and writes to its file that it has won.
      * Losing players log to their files the player that won
      * @param winningPlayerNumber Log player's end game state: win or loss
      * @throws IOException Error writing to text file

@@ -164,7 +164,9 @@ public class CardGame {
     }
 
     /**
-     * Stops all players and sends final messages
+     * Stops all players from playing, then informs to other players
+     * that the game has ended and to log their final messages.
+     * Decks log their cards to their files
      * @param playerDenomination Player that has won
      * @throws IOException
      */
