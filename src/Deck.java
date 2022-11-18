@@ -67,11 +67,11 @@ public class Deck {
      */
     public void logStatus() {
 
-        String deckCards = "";
+        String deckCards = "deck " + getNumberofDeck() + " contains: [ ";
         for(Card card: deck) {
-            deckCards += " " + card.getValue();
+            deckCards += card.getValue() + " ";
         }
-
+        deckCards += "]";
         try {
             FileWriter deckLogger = new FileWriter("deckOutput\\deck" + Number + "_output.txt");
             deckLogger.write(deckCards);
