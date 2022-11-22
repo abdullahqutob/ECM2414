@@ -9,11 +9,8 @@ import java.util.Scanner;
 public class Pack {
 
     static String packLocation = null;
+    static ArrayList<Integer> cardValues = new ArrayList<Integer>();
 
-    // colorful error or success messages
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
 
     /**
      * Function that requests the user to input the location
@@ -29,7 +26,7 @@ public class Pack {
             packLocation = String.valueOf(inputString);
             validatePack();
         } catch (FileNotFoundException e) {
-            System.out.println(ANSI_RED + "Error: File not found, please try again" + ANSI_RESET);
+            System.out.println("Error: File not found, please try again");
             requestPackFile();
         }
 
@@ -43,7 +40,7 @@ public class Pack {
      */
     public static void validatePack() throws FileNotFoundException {
 
-        ArrayList<Integer> cardValues = new ArrayList<Integer>();
+        cardValues.clear();
 
         File file = new File(packLocation);
         Scanner scan = new Scanner(file);
@@ -54,13 +51,13 @@ public class Pack {
                 String scanNextLine = scan.nextLine();
                 int currentValue = Integer.parseInt(scanNextLine);
                 if (currentValue <= 0) { // if pack contains a 0 or negative integers
-                    System.out.println(ANSI_RED + "Invalid Pack: Values cannot be less than or equal to 0" + ANSI_RESET);
+                    System.out.println("Invalid Pack: Values cannot be less than or equal to 0");
                     requestPackFile();
                     return;
                 }
                 cardValues.add(currentValue);
             } catch (NumberFormatException e) { // if pack contains non-integers
-                System.out.println(ANSI_RED + "File must only contain Integers" + ANSI_RESET);
+                System.out.println("File must only contain Integers");
                 requestPackFile();
                 return;
             }
@@ -70,19 +67,28 @@ public class Pack {
 
         if (cardValues.size() == eightNumOfPlayers){
             // create pack of cards
-            for (Integer value : cardValues) {
-                CardGame.cardsPack.add(new Card(value));
-            }
+            createCardsPack();
+            System.out.println("Validation Successful");
+            System.out.println("Game starting...");
         } else if (cardValues.size() > eightNumOfPlayers){
-            System.out.println(ANSI_RED + "Invalid Pack: Pack contains more than 8n cards" + ANSI_RESET);
+            System.out.println("Invalid Pack: Pack contains more than 8n cards");
             requestPackFile();
         } else if (cardValues.size() < eightNumOfPlayers) {
-            System.out.println(ANSI_RED + "Invalid Pack: Pack contains less than 8n cards" + ANSI_RESET);
+            System.out.println("Invalid Pack: Pack contains less than 8n cards");
             requestPackFile();
         }
 
-        System.out.println(ANSI_GREEN + "Validation Successful" + ANSI_RESET);
-        System.out.println(ANSI_GREEN + "Game starting..." + ANSI_RESET);
+
+    }
+
+    /**
+     * Creating the cards and adding it to the CardGame pack
+     * for distribution to decks and players
+     */
+    public static void createCardsPack() {
+        for (Integer value : cardValues) {
+            CardGame.cardsPack.add(new Card(value));
+        }
     }
 
 }
