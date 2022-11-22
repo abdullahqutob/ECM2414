@@ -58,7 +58,7 @@ public class Player extends Thread {
      */
     public synchronized Deck selectDeck(int deckNumber) {
         for (Deck deck: CardGame.decks) {
-            if(deck.getNumberofDeck() == deckNumber) {
+            if(deck.getNumberOfDeck() == deckNumber) {
                 return deck;
             }
         }

@@ -42,9 +42,10 @@
 - [ ] start game
 
   ### Testing
-    
+    - [ ] player creation
     - [ ] testing handing out cards to players and deck
     - [ ] testing complete game cycle
+    - [ ] output files
 
 ## Card
 
@@ -63,6 +64,5 @@
     - deck too small/big
     - deck doesnt contain 4n duplicates
     - deck contains strings
-  - [ ] pack creation
-  - [ ] player creation
+  - [x] pack creation
   - [ ] test game functionality 

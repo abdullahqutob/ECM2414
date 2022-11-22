@@ -27,7 +27,7 @@ public class Deck {
      *  Provides number of deck
      * @return number of deck
      */
-    public int getNumberofDeck() {
+    public int getNumberOfDeck() {
         return Number;
     }
 
@@ -67,7 +67,7 @@ public class Deck {
      */
     public void logStatus() {
 
-        String deckCards = "deck " + getNumberofDeck() + " contains: [ ";
+        String deckCards = "deck " + getNumberOfDeck() + " contains: [ ";
         for(Card card: deck) {
             deckCards += card.getValue() + " ";
         }

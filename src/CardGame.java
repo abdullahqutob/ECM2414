@@ -36,13 +36,13 @@ public class CardGame {
                 System.out.println("Please enter the number of players: ");
                 int tempPlayers = playersInput.nextInt();
                 if (tempPlayers < 2) {
-                    System.out.println(Pack.ANSI_RED + "Input is out of range, Must be greater than 2" + Pack.ANSI_RESET);
+                    System.out.println("Input is out of range, Must be greater than 2");
                 } else {
                     validPlayerInput = true;
                     numOfPlayers = tempPlayers;
                 }
             } catch (InputMismatchException e) {
-                System.out.println(Pack.ANSI_RED + "Invalid input, please try again" + Pack.ANSI_RESET);
+                System.out.println("Invalid input, please try again");
             }
         }
     }
@@ -136,7 +136,7 @@ public class CardGame {
         // Create deck files for respective decks
         for (Deck deck : decks) {
             try {
-                File newFile = new File(deckOutputDirectory, "deck" + deck.getNumberofDeck() + "_output.txt");
+                File newFile = new File(deckOutputDirectory, "deck" + deck.getNumberOfDeck() + "_output.txt");
                 newFile.createNewFile();
             } catch (IOException e) {
                 System.out.println(e);

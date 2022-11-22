@@ -3,9 +3,7 @@
  */
 public class Card {
 
-    /**
-     *  Value of card
-     */
+    /** Value of card */
     private final int CardNum;
 
     /**

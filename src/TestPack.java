@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestPack {
 
     @Test
-    public void testRequestPackFileInvalidInput() {
-        System.out.println("\n" + "testRequestPackFileInvalidInput:");
+    public void testRequestPackFileInvalidLocation() {
+        System.out.println("\n" + "testRequestPackFileInvalidLocation:");
 
         Pack pack = new Pack();
         String input = "invalid input";
@@ -36,8 +36,8 @@ public class TestPack {
      * hand given the round-robin distribution.
      */
     @Test
-    public void testRequestPackFileValidInputValidPlayers() {
-        System.out.println("\n" + "testRequestPackValidInputValidPlayers:");
+    public void testRequestPackFileValidLocationValidPlayers() {
+        System.out.println("\n" + "testRequestPackValidLocationValidPlayers:");
 
         Pack pack = new Pack();
         CardGame test = new CardGame();
