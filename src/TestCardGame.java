@@ -118,23 +118,23 @@ public class TestCardGame {
 
         // to be given to players
         CardGame.cardsPack.add(new Card(1));
-        CardGame.cardsPack.add(new Card(0));
+        CardGame.cardsPack.add(new Card(10));
         CardGame.cardsPack.add(new Card(2));
-        CardGame.cardsPack.add(new Card(0));
+        CardGame.cardsPack.add(new Card(10));
         CardGame.cardsPack.add(new Card(3));
-        CardGame.cardsPack.add(new Card(0));
+        CardGame.cardsPack.add(new Card(10));
         CardGame.cardsPack.add(new Card(4));
-        CardGame.cardsPack.add(new Card(0));
+        CardGame.cardsPack.add(new Card(10));
 
         // to be given to decks
         CardGame.cardsPack.add(new Card(5));
-        CardGame.cardsPack.add(new Card(0));
+        CardGame.cardsPack.add(new Card(10));
         CardGame.cardsPack.add(new Card(6));
-        CardGame.cardsPack.add(new Card(0));
+        CardGame.cardsPack.add(new Card(10));
         CardGame.cardsPack.add(new Card(7));
-        CardGame.cardsPack.add(new Card(0));
+        CardGame.cardsPack.add(new Card(10));
         CardGame.cardsPack.add(new Card(8));
-        CardGame.cardsPack.add(new Card(0));
+        CardGame.cardsPack.add(new Card(10));
 
         CardGame.distributeCardsToPlayers();
 
