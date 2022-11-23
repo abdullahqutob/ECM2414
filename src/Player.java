@@ -9,7 +9,7 @@ public class Player extends Thread {
     private final int playerDenomination;
 
     /** Hand of player, consisting of cards */
-    private final ArrayList<Card> hand = new ArrayList<Card>();
+    final ArrayList<Card> hand = new ArrayList<Card>();
 
     /** Number of deck which player draws from. */
     private final int drawDeck;
