@@ -6,7 +6,7 @@ public class TestDeck {
 
 
     /**
-     *
+     * Testing the creation of a deck object
      */
     @Test
     public void testDeckCreation(){
@@ -28,6 +28,9 @@ public class TestDeck {
         System.out.println("Test was successful :)");
     }
 
+    /**
+     * Testing the drawCard function
+     */
     @Test
     public void testDeckDrawCard() {
         System.out.println("\n" + "testDeckDrawCard:");

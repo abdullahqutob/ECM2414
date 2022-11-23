@@ -21,6 +21,9 @@ public class TestPlayer {
     }
 
 
+    /**
+     * Testing the addCardToHand and removeCardFromHand methods
+     */
     @Test
     public void testAddCardAndRemoveCardFromHand() {
         System.out.println("\n" + "testAddCardAndRemoveCardFromHand:");
@@ -37,6 +40,9 @@ public class TestPlayer {
     }
 
 
+    /**
+     * Testing the function that checks if a player has won
+     */
     @Test
     public void testHasPlayerWon() {
         System.out.println("\n" + "testHasPlayerWon:");

@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class TestCardGame {
 
     /**
-     * Tests the requesting of players
+     * Tests the requesting of players with a string as an input
      */
     @Test
     public void testRequestNumOfPlayersStringInput() {
@@ -32,7 +32,7 @@ public class TestCardGame {
     }
 
     /**
-     * Tests the requesting of players
+     * Tests the requesting of players with a valid input
      */
     @Test
     public void testRequestNumOfPlayersValidInput() {
@@ -56,7 +56,7 @@ public class TestCardGame {
 
 
     /**
-     * Tests the requesting of players
+     * Tests the requesting of players with a number less than 2
      */
     @Test
     public void testRequestNumOfPlayersTooSmall() {
@@ -79,8 +79,9 @@ public class TestCardGame {
     }
 
 
-
-
+    /**
+     * Testing the createPlayersAndDecks function
+     */
     @Test
     public void testCreatePlayersAndDecks() {
         System.out.println("\n" + "testCreatePlayersAndDecks:");
@@ -98,12 +99,17 @@ public class TestCardGame {
     }
 
 
+    /**
+     * Testing the functions that distribute cards from the pack
+     * to the hands and decks
+     */
     @Test
     public void testDistributeCardsToPlayersAndDecks() {
         System.out.println("\n" + "testDistributeCardsToPlayersAndDecks:");
 
-        CardGame.numOfPlayers = 2;
 
+        // creating players and decks
+        CardGame.numOfPlayers = 2;
         CardGame.players.add(new Player(1));
         CardGame.players.add(new Player(2));
         CardGame.decks.add(new Deck(1));
@@ -139,6 +145,7 @@ public class TestCardGame {
         assertEquals(CardGame.players.get(0).hand.get(3).getValue(), 4 );
 
         CardGame.distributeCardsToDecks();
+        // the values of cards in the deck
         assertEquals(CardGame.decks.get(0).drawCard().getValue(), 5);
         assertEquals(CardGame.decks.get(0).drawCard().getValue(), 6);
         assertEquals(CardGame.decks.get(0).drawCard().getValue(), 7);

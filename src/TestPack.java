@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPack {
 
+    /**
+     * Testing the request pack function with an invalid location
+     */
     @Test
     public void testRequestPackFileInvalidLocation() {
         System.out.println("\n" + "testRequestPackFileInvalidLocation:");
@@ -56,6 +59,9 @@ public class TestPack {
     }
 
 
+    /**
+     * Testing the validation of a pack containing a string
+     */
     @Test
     public void testRequestPackFileInvalidPackContainsString() {
         System.out.println("\n" + "testRequestPackFileInvalidPackContainsString:");
@@ -76,12 +82,12 @@ public class TestPack {
 
             assertEquals(1, Pack.cardValues.get(Pack.cardValues.size()-1));
             System.out.println("Test was successful :)");
-
-
-
         }
     }
 
+    /**
+     * Testing the validation of a pack containing a zero
+     */
     @Test
     public void testRequestPackFileInvalidPackContainsZero() {
         System.out.println("\n" + "testRequestPackFileInvalidPackContainsZero:");
@@ -107,6 +113,9 @@ public class TestPack {
         }
     }
 
+    /**
+     * Testing the validation of a pack with too many cards
+     */
     @Test
     public void testRequestPackFileInvalidPackContainsMoreThanEightNCards() {
         System.out.println("\n" + "testRequestPackFileInvalidPackContainsMoreThanEightNCards:");
@@ -130,6 +139,9 @@ public class TestPack {
         }
     }
 
+    /**
+     * Testing the validation of a pack with too little cards
+     */
     @Test
     public void testRequestPackFileInvalidPackContainsLessThanEightNCards() {
         System.out.println("\n" + "testRequestPackFileInvalidPackContainsLessThanEightNCards:");
