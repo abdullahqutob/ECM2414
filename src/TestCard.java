@@ -23,7 +23,7 @@ public class TestCard {
         assertNotEquals(card1Value, card3Value); // checking if values are different
         assertNotEquals(testCard1, testCard2); // testing that they are different objects
 
-        System.out.println("testCreateCard Successful");
+        System.out.println("Test was successful :)");
 
     }
 

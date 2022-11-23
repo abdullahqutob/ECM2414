@@ -12,10 +12,10 @@ public class Player extends Thread {
     final ArrayList<Card> hand = new ArrayList<Card>();
 
     /** Number of deck which player draws from. */
-    private final int drawDeck;
+    final int drawDeck;
 
     /** Number of deck in which player discards cards. */
-    private final int discardedDeck;
+    final int discardedDeck;
 
     /**
      * Creates player object based on its denomination
@@ -75,7 +75,7 @@ public class Player extends Thread {
 
     /**
      * Adds card to hand during start of game
-     * @param card To be removed from hand
+     * @param card index of card be removed from hand
      */
     public void removeCardFromHand(int card) {
         this.hand.remove(card);

@@ -25,7 +25,7 @@ public class TestDeck {
         assertEquals(deck1.deckLength(), 2);
 
 
-        System.out.println("testDeckCreation Successful");
+        System.out.println("Test was successful :)");
     }
 
     @Test
@@ -43,7 +43,7 @@ public class TestDeck {
         assertEquals(deck1.drawCard().getValue(), 2);
         assertEquals(deck1.deckLength(), 0);
 
-        System.out.println("testDeckDrawCard Successful");
+        System.out.println("Test was successful :)");
     }
 
 }
