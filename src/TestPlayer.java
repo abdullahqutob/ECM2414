@@ -92,11 +92,11 @@ public class TestPlayer {
         player.addCardToHand(new Card(1));
         player.addCardToHand(new Card(3));
 
-        player.addAndRemoveCards();
+        player.addAndRemoveCards(); // drawDeck is empty
 
         drawDeck.insertCard(new Card(1));
 
-        player.addAndRemoveCards();
+        player.addAndRemoveCards(); // should discard 3 and add 1 to hand
 
         assertEquals(3, discardDeck.drawCard().getValue());
         assertTrue(player.hasPlayerWon());
