@@ -28,6 +28,10 @@ With each iteration, the players write to their own designated output text files
 ## How to run the test suite
 
 - Import the project into IntelliJ
+
+![image](https://user-images.githubusercontent.com/96269432/203748659-652a2397-f039-4ef7-bfd0-efc3f4c017d9.png)
+![image](https://user-images.githubusercontent.com/96269432/203748670-58d0944f-0847-4efa-abe6-bf3c86b6da82.png)
+
 - Go to ``ECM2414/src/TestSuite.java``
 - Click on ``'Run Test Suite'``
 ![image](https://user-images.githubusercontent.com/96269432/203731124-d2070822-fe07-4403-80ca-4a31d817f948.png)
@@ -36,5 +40,5 @@ With each iteration, the players write to their own designated output text files
 
 
 # Creators
-- Qutob, Abdullah - 710077669
-- Cooklin, Sam - 670008876
+- Qutob, Abdullah - 041184
+- Cooklin, Sam - 244903
