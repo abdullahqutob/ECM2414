@@ -19,8 +19,12 @@ public class TestCardGame {
         System.setIn(in);
         Scanner scanner = new Scanner(System.in);
 
+        try{
         CardGame.requestNumOfPlayers();
+        } catch (Exception e) {
         assertEquals(0, CardGame.numOfPlayers); // never updated
+
+        }
 
         System.out.println("Test was successful :)");
 
@@ -44,11 +48,12 @@ public class TestCardGame {
         try {
             CardGame.requestNumOfPlayers();
             assertEquals(5, CardGame.numOfPlayers);
+            System.out.println("Test was successful :)");
         } catch (Exception e) {
             System.out.println("Test failed");
         }
 
-        System.out.println("Test was successful :)");
+
 
         CardGame.numOfPlayers = 0; // reset for other tests
     }
