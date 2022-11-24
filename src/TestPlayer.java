@@ -1,4 +1,7 @@
 import org.junit.Test;
+
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 public class TestPlayer {
@@ -67,6 +70,36 @@ public class TestPlayer {
 
         assertTrue(player.hasPlayerWon());
 
+
+        System.out.println("Test was successful :)");
+    }
+
+    /**
+     * Testing the handling of a player accessing an empty deck
+     */
+    @Test
+    public void testAccessEmptyDeck() throws IOException {
+        System.out.println("\n" + "testAccessEmptyDeck:");
+
+        Player player = new Player(1);
+        Deck drawDeck = new Deck(1);
+        Deck discardDeck = new Deck(2);
+        CardGame.decks.add(drawDeck);
+        CardGame.decks.add(discardDeck);
+
+        player.addCardToHand(new Card(1));
+        player.addCardToHand(new Card(1));
+        player.addCardToHand(new Card(1));
+        player.addCardToHand(new Card(3));
+
+        player.addAndRemoveCards();
+
+        drawDeck.insertCard(new Card(1));
+
+        player.addAndRemoveCards();
+
+        assertEquals(3, discardDeck.drawCard().getValue());
+        assertTrue(player.hasPlayerWon());
 
         System.out.println("Test was successful :)");
     }

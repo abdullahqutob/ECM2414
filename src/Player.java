@@ -111,7 +111,6 @@ public class Player extends Thread {
     /**
      * Mechanism which allows player to add one card and remove another from hand;
      * interacts with draw and discard pile.
-     * @return Card discarded by player
      */
     public void addAndRemoveCards() throws IOException {
 
