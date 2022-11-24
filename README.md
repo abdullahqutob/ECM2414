@@ -1,8 +1,8 @@
 # ECM2414 Card Game
 
-This project is a pair-programming assignment that implements threading and user inputs, to run a card game with 2 -> n players. At the start of the game, each player is given 4 cards from the pack of cards in a round-robin fashion. There are equally as many decks as there are players, which also recieve 4 cards at the start of the game from round-robin distribution. Each player is assigned a deck to draw cards from, and a deck to discard cards to. The goal of the player is to collect 4 of the same cards, preferrably with the same denomination as the player.
+This project is a pair-programming assignment that implements threading and user inputs, to run a card game with 2 -> n players. At the start of the game, each player is given 4 cards from the pack of cards in a round-robin fashion. There are equally as many decks as there are players, which also receive 4 cards at the start of the game from round-robin distribution. Each player is assigned a deck to draw cards from, and a deck to discard cards. The goal of the player is to collect 4 of the same cards, preferably with the same denomination as the player.
 
-With each iteration, the players write to their own designated output text files their moves (the card they draw, the card they discard, and their hand). When a player has won, it promptly interrupts all other players from executing, and informs them of their victory. The players then write to their designated text output file that a player has won, and their final hand. The decks are also instructed to log their current holdings to their text files.
+With each iteration, the players write to their own designated output text files their moves (the card they draw, the card they discard, and their hand). When a player has won, it promptly interrupts all other players from executing and informs them of their victory. The players then write to their designated text output file that a player has won, and their final hand. The decks are also instructed to log their current holdings to their text files.
 
      Disclaimer - To avoid untested issues, please run on a windows device 
 
