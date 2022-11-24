@@ -19,15 +19,13 @@ public class TestCardGame {
         System.setIn(in);
         Scanner scanner = new Scanner(System.in);
 
-        try {
-            CardGame.requestNumOfPlayers();
-        } catch (Exception e) {
-            // exception thrown because the method recognized the input
-            // is invalid, and requests it again, but there's no second input
-            assertEquals(0, CardGame.numOfPlayers); // never updated
-            System.out.println("Test was successful :)");
-        }
+        CardGame.requestNumOfPlayers();
+        assertEquals(0, CardGame.numOfPlayers); // never updated
 
+        System.out.println("Test was successful :)");
+
+
+        CardGame.numOfPlayers = 0; // reset for other tests
     }
 
     /**
@@ -51,6 +49,8 @@ public class TestCardGame {
         }
 
         System.out.println("Test was successful :)");
+
+        CardGame.numOfPlayers = 0; // reset for other tests
     }
 
 
@@ -75,6 +75,7 @@ public class TestCardGame {
             System.out.println("Test was successful :)");
         }
 
+        CardGame.numOfPlayers = 0; // reset for other tests
     }
 
 

@@ -153,8 +153,10 @@ public class Player extends Thread {
      * @return true or false
      */
     boolean hasPlayerWon() {
-        for(int i=0;i<hand.size();i++) {
-            if(this.hand.get(i).getValue()!=playerDenomination) return false;
+        for(int i=0; i<3; i++) {
+            if(this.hand.get(i).getValue()!= this.hand.get(i+1).getValue()) {
+                return false;
+            }
         }
         return true;
     }

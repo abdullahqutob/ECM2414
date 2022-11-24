@@ -40,6 +40,8 @@ public class Pack {
      */
     public static void validatePack() throws FileNotFoundException {
 
+        // clears in case the pack validation failed, and there were
+        // leftovers from an invalid pack
         cardValues.clear();
 
         File file = new File(packLocation);
