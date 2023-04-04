@@ -16,6 +16,8 @@ With each iteration, the players write to their own designated output text files
     -   If it is in another directory type the directory name then the pack file name, i.e., `PackFolder/Pack.txt`
     -   If it is in the same directory as the jar file, just type the name of the pack file
         ![image](https://user-images.githubusercontent.com/96269432/203731550-e5c7d266-6ebd-4f5f-9049-c85126080c61.png)
+    ### Game in action:
+     <img width="600" alt="image" src="https://user-images.githubusercontent.com/96269432/229861825-e35cc985-5a5c-437f-946d-519c157cab14.png">
 
 ## How to run the source code
 
